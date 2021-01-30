@@ -1,7 +1,16 @@
 plugins {
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.9'
     id 'jacoco'
     id 'checkstyle'
+}
+
+dependencies {
+    testCompile 'junit:junit:4.13'
+}
+repositories {
+    jcenter() 
+    mavenCentral()
 }
 
 
@@ -13,3 +22,10 @@ jacocoTestReport {
 }
 
 check.dependsOn jacocoTestReport
+
+javafx {
+    version = '11'
+    modules = [ 'javafx.controls' ]
+}
+
+mainClassName = "pathfinding.main.Main"
