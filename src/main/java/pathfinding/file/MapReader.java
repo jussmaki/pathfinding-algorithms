@@ -15,7 +15,7 @@ public class MapReader {
     /**
      *
      * @param fileName
-     * @return graph as Maze object
+     * @return graph as Maze object, 1=passable, 0=not passable
      * @throws FileNotFoundException
      */
     public Maze readMap(String fileName) throws FileNotFoundException {
@@ -36,16 +36,13 @@ public class MapReader {
             //System.out.println("row: " + row);
             for (int i = 0; i < row.length(); i++) {
                 if ((row.substring(i, i + 1).equals(".")) || (row.substring(i, i + 1).equals("G"))) {
-                    map[column][i] = 1;
+                    map[column][i] = 1; //ei estettä
                 } else {
-                    map[column][i] = 0;
+                    map[column][i] = 0; //este
                 }
-                //System.out.println(row.substring(i,i));
-                //if (((row[i].equals(".")) || (row[i].equals("G"))) {
             }
             column++;
         }
         return new Maze(map);
-        //throw new FileFormatException(this.mapFile);
     }
 }

@@ -23,14 +23,6 @@ public class Maze {
 
     /**
      *
-     * @param set maze array
-     */
-    public void setMaze(int[][] maze) {
-        this.maze = maze;
-    }
-    
-    /**
-     *
      * @param x
      * @param y
      * @return node number
@@ -51,9 +43,9 @@ public class Maze {
      *
      * @return graph as adjacencylist
      */
-    public ArrayList<Integer>[] toAdjacencyList() {
+    public ArrayList<Node>[] toAdjacencyList() {
         int n = maze.length * maze[0].length;
-        ArrayList<Integer>[] adjacencyList = new ArrayList[n + 1];
+        ArrayList<Node>[] adjacencyList = new ArrayList[n + 1];
         for (int i = 1; i <= n; i++) {
             adjacencyList[i] = new ArrayList<>();
         }
@@ -76,31 +68,28 @@ public class Maze {
             for (int y = 0; y < this.maze[0].length; y++) {
                 //System.out.println(nodeNo);
                 if (canGoFromTo(x, y, x - 1, y)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x - 1][y]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x - 1][y], x-1, y));
                 }
                 if (canGoFromTo(x, y, x - 1, y - 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x - 1][y - 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x - 1][y - 1], x - 1, y - 1));
                 }
                 if (canGoFromTo(x, y, x + 1, y)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x + 1][y]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x + 1][y], x+1, y));
                 }
                 if (canGoFromTo(x, y, x, y + 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x][y + 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x][y+1], x, y+1));
                 }
                 if (canGoFromTo(x, y, x, y - 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x][y - 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x][y-1], x, y-1));
                 }
                 if (canGoFromTo(x, y, x - 1, y + 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x - 1][y + 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x - 1][y + 1], x-1, y + 1));
                 }
                 if (canGoFromTo(x, y, x + 1, y - 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x + 1][y - 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x + 1][y-1], x+1, y-1));
                 }
                 if (canGoFromTo(x, y, x + 1, y + 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x + 1][y + 1]);
-                }
-                if (canGoFromTo(x, y, x - 1, y - 1)) {
-                    adjacencyList[nodeNo].add(nodeNumbers[x - 1][y - 1]);
+                    adjacencyList[nodeNo].add(new Node(nodeNumbers[x + 1][y +1], x+1, y+1));
                 }
                 nodeNo++;
             }

@@ -24,8 +24,8 @@ jacocoTestReport {
 check.dependsOn jacocoTestReport
 
 javafx {
-    version = '11'
-    modules = [ 'javafx.controls' ]
+    version = '15'
+    modules = [ 'javafx.controls', 'javafx.graphics', 'javafx.swing', 'javafx.base' ]
 }
 
 mainClassName = "pathfinding.main.Main"

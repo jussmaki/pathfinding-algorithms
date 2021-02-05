@@ -1,5 +1,6 @@
 package pathfinding.ui;
 
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -8,97 +9,113 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import pathfinding.pathfinder.PathFinder;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.Label;
+import pathfinding.domain.Node;
 
 public class UI extends Application {
 
-    int[][] maze = new int[512][512];
-    ArrayList<Integer> path;
 
+    //int[][] maze;
+    ArrayList<Node> route;
+    PathFinder pathFinder = new PathFinder();    
+    int startX = -1;
+    int startY = -1;
+    int endX = -1;
+    int endY = -1;
+    boolean startPointSelected = false;    
+    //boolean endPointSelected = false;
+    
     @Override
     public void start(Stage primaryStage) {
         
-        PathFinder pathFinder = new PathFinder();
-        
         primaryStage.setTitle("Pathfinding app");
         
-        GridPane gridPane = new GridPane();
-        gridPane.setHgap(1);
-        gridPane.setVgap(1);
-        gridPane.setPadding(new Insets(1, 1, 1, 1));
-        gridPane.setGridLinesVisible(true);
-        
-        drawEmptyMaze(gridPane);
+        ImageView imageView = new ImageView();
         
         FlowPane flow = new FlowPane();
         flow.setPadding(new Insets(10, 10, 10, 10));
         flow.setHgap(5);
-        TextField fileNameTextField = new TextField();
-        fileNameTextField.setText("16room_000.map");
-        Button readAndSearchButton = new Button();
-        readAndSearchButton.setText("Djikstra!");
-        TextField startXTF = new TextField("2");
-        TextField startYTF = new TextField("40");
-        TextField endXTF = new TextField("300");
-        TextField endYTF = new TextField("233");
-        flow.getChildren().addAll(fileNameTextField, startXTF, startYTF, endXTF, endYTF, readAndSearchButton);        
+        TextField fileNameTextField = new TextField("AR0017SR.map");
+        Button loadButton = new Button("Load");
+        Button searchDjikstraButton = new Button("Djikstra!");
+        searchDjikstraButton.setDisable(true);
+        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton);        
+        Label infoLabel = new Label("Click start point with mouse");
+        BorderPane pane = new BorderPane();
+        pane.setTop(flow);
+        pane.setCenter(imageView);
+        pane.setBottom(infoLabel);
         
-       BorderPane pane = new BorderPane();
-       pane.setCenter(gridPane);
-       pane.setTop(flow);
+        Scene scene = new Scene(pane, 800, 600);        
 
-       Scene scene = new Scene(pane, 800, 600);        
+        primaryStage.setScene(scene);
+
+        primaryStage.show();
         
-       primaryStage.setScene(scene);
-        
-       primaryStage.show();
-       
-       readAndSearchButton.setOnAction((event) -> {
-            try {
-                pathFinder.openMapFile(fileNameTextField.getText());
-            } catch (Exception ex) {
+        loadButton.setOnAction((event) -> {
+             try {
+                pathFinder.openMapFile("AR0017SR.map");
+             } catch (Exception ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             imageView.setImage(SwingFXUtils.toFXImage(drawMaze(pathFinder.getAsArray()), null));
+             startPointSelected = false;
+             //endPointSelected = false;
+             infoLabel.setText("Click start point with mouse");
+        });
+
+        imageView.setOnMouseClicked((event) -> {
+            System.out.println("x: " + event.getX() + ", y: " + event.getY());
+            if (!startPointSelected) {
+                startX = (int) event.getX();
+                startY = (int) event.getY();
+                infoLabel.setText("Click end point with mouse");
+                startPointSelected = true;
+            //} else if (!endPointSelected) {
+            } else {
+                endX = (int) event.getX();
+                endY = (int) event.getY();
+                infoLabel.setText("Ready to search path!");
+                //endPointSelected = true;
+                searchDjikstraButton.setDisable(false);
             }
-           pathFinder.searchDjikstra(Integer.valueOf(startXTF.getText()), Integer.valueOf(startYTF.getText()), Integer.valueOf(endXTF.getText()), Integer.valueOf(endYTF.getText()));
-           //drawMaze(pathFinder.getAsArray(), gridPane);
-       });
+        });
         
+        searchDjikstraButton.setOnAction((event) -> {
+            route = pathFinder.searchDjikstra(startX, startY, endX, endY);
+            //imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getAsArray(), null), route));
+        });
+
     }
     
-    public void drawMaze(int[][] maze, GridPane gridPane) {
-        
+    public BufferedImage drawMaze(int[][] maze) {
+        BufferedImage bufferedImage = new BufferedImage(maze.length,maze[0].length, BufferedImage.TYPE_INT_RGB);
         for (int x=0; x<maze.length; x++) {
 
             for (int y=0; y<maze[x].length; y++) {
-                Rectangle rect = new Rectangle(2,2);
                 if (maze[x][y] == 1) {
-                    rect.setStroke(Color.WHITE);
-                    rect.setFill(Color.WHITE);
+                    bufferedImage.setRGB(x, y, 255);
                 } else {
-                    rect.setStroke(Color.BLACK);
-                    rect.setFill(Color.BLACK);
+                    bufferedImage.setRGB(x, y, 0);
                 }
-                gridPane.add(rect, x, y);
             }
         }
+        return bufferedImage;
     }
 
-    private void drawEmptyMaze(GridPane gridPane) {
-        for (int x=0; x<maze.length; x++) {
 
-            for (int y=0; y<maze[x].length; y++) {
-                Rectangle rect = new Rectangle(2,2);
-                    rect.setStroke(Color.WHITE);
-                    rect.setFill(Color.WHITE);
-                gridPane.add(rect, x, y);
-            }
-        }
+    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Node> route) {
+        BufferedImage bufferedImage = drawMaze(maze);
+        
+        //draw route here
+        
+        return null;
     }
     
     public static void main(String[] args) {

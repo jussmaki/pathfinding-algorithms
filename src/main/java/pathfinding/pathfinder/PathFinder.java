@@ -3,6 +3,7 @@ package pathfinding.pathfinder;
 import java.util.ArrayList;
 import pathfinding.algo.Djikstra;
 import pathfinding.domain.Maze;
+import pathfinding.domain.Node;
 import pathfinding.file.MapReader;
 
 
@@ -25,21 +26,6 @@ public class PathFinder {
      */
     public void openMapFile(String fileName) throws Exception {
         this.graph = mapReader.readMap(fileName);
-        /*for (int x=0; x<maze.getMaze().length; x++) {
-            for (int y=0; y<maze.getMaze().length; y++) {
-                System.out.print(maze.getMaze()[x][y]);
-            }
-            System.out.println("");
-        }*/
-        /*ArrayList<Integer>[] adjacencyList = this.graph.toAdjacencyList();
-        
-        for (int i=1; i<adjacencyList.length; i++) {
-            System.out.print("node " + i + ": ");
-            for (Integer node : adjacencyList[i]) {
-                System.out.print(node + " " );
-            }
-            System.out.println("");
-        }*/
     }
     
     /**
@@ -48,6 +34,14 @@ public class PathFinder {
      */
     public int[][] getAsArray() {
         return graph.getMaze();
+    }
+
+    public ArrayList<Node> searchDjikstra(int startX, int startY, int endX, int endY) {
+        ArrayList<Node>[] adjacencyList = graph.toAdjacencyList();
+        int fromNode;
+        int toNode;
+        return null;
+        //return djikstra.search(adjacencyList, fromNode, toNode);
     }
     
     /**
@@ -58,8 +52,8 @@ public class PathFinder {
      * @param endY
      * @return nodes as list of integers
      */
-    public ArrayList<Integer> searchDjikstra(int startX, int startY, int endX, int endY) {
+    /*public ArrayList<Integer> searchDjikstra(int startX, int startY, int endX, int endY) {
         return djikstra.search(this.graph.toAdjacencyList(), this.graph.toNodeNumberFromCoordinate(startX, startY), this.graph.toNodeNumberFromCoordinate(endX, endY));
         //return djikstra.search(this.graph.toAdjacencyList(), 1, 3);
-    }
+    }*/
 }

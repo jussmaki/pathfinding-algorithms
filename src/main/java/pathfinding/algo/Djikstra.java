@@ -13,9 +13,9 @@ public class Djikstra {
      * @param toNode
      * @return shortest path from fromNode to toNode as ArrayList
      */
-    public ArrayList<Integer> search(ArrayList<Integer>[] adjacencyList, int fromNode, int toNode) {
-        int n = adjacencyList.length; //n+1
-        ArrayList<Integer> route = new ArrayList<>();
+    public ArrayList<Integer> search(ArrayList<Node>[] adjacencyList, int fromNode, int toNode) {
+        /*int n = adjacencyList.length; //n+1
+        ArrayList<Node> route = new ArrayList<>();
         //int[] previous = new int[n];
         boolean[] visited = new boolean[n];
         int[] dist = new int[n];
@@ -39,10 +39,10 @@ public class Djikstra {
                     heap.add(new Node(neighbour, newDist));
                 }
             }
-        }
+        }*/
+        return null;
         //System.out.println(route);
-        return route;
+        //return route;
     }
 
-    
 }
