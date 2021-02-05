@@ -53,6 +53,6 @@ public class Node implements Comparable<Node> {
      */
     @Override
     public int compareTo(Node n) {
-        return this.distance-n.distance;
+        return this.distance - n.distance;
     }
 }
