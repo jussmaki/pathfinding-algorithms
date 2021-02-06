@@ -1,5 +1,6 @@
 package pathfinding.ui;
 
+import pathfinding.domain.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -16,13 +17,10 @@ import javafx.stage.Stage;
 import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
-import pathfinding.domain.Node;
 
 public class UI extends Application {
 
-
-    //int[][] maze;
-    ArrayList<Node> route;
+    ArrayList<Point> route;
     PathFinder pathFinder = new PathFinder();    
     int startX = -1;
     int startY = -1;
@@ -45,7 +43,9 @@ public class UI extends Application {
         Button loadButton = new Button("Load");
         Button searchDjikstraButton = new Button("Djikstra!");
         searchDjikstraButton.setDisable(true);
-        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton);        
+        Button searchAStarButton = new Button("AStar!");
+        searchAStarButton.setDisable(true);
+        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton, searchAStarButton);        
         Label infoLabel = new Label("Click start point with mouse");
         BorderPane pane = new BorderPane();
         pane.setTop(flow);
@@ -59,15 +59,15 @@ public class UI extends Application {
         primaryStage.show();
         
         loadButton.setOnAction((event) -> {
-             try {
+            try {
                 pathFinder.openMapFile("AR0017SR.map");
-             } catch (Exception ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
-             }
-             imageView.setImage(SwingFXUtils.toFXImage(drawMaze(pathFinder.getAsArray()), null));
-             startPointSelected = false;
-             //endPointSelected = false;
-             infoLabel.setText("Click start point with mouse");
+            }
+            imageView.setImage(SwingFXUtils.toFXImage(drawMaze(pathFinder.getGrid()), null));
+            startPointSelected = false;
+            //endPointSelected = false;
+            infoLabel.setText("Click start point with mouse");
         });
 
         imageView.setOnMouseClicked((event) -> {
@@ -89,33 +89,44 @@ public class UI extends Application {
         
         searchDjikstraButton.setOnAction((event) -> {
             route = pathFinder.searchDjikstra(startX, startY, endX, endY);
-            //imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getAsArray(), null), route));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route), null));
         });
 
     }
     
+    /**
+     *
+     * @param maze
+     * @return grid as BufferedImage
+     */
     public BufferedImage drawMaze(int[][] maze) {
-        BufferedImage bufferedImage = new BufferedImage(maze.length,maze[0].length, BufferedImage.TYPE_INT_RGB);
-        for (int x=0; x<maze.length; x++) {
+        BufferedImage bufferedImage = new BufferedImage(maze.length, maze[0].length, BufferedImage.TYPE_INT_RGB);
+        for (int x = 0; x < maze.length; x++) {
 
-            for (int y=0; y<maze[x].length; y++) {
+            for (int y = 0; y < maze[x].length; y++) {
                 if (maze[x][y] == 1) {
-                    bufferedImage.setRGB(x, y, 255);
+                    bufferedImage.setRGB(x, y, 16777215);
                 } else {
                     bufferedImage.setRGB(x, y, 0);
                 }
             }
         }
+        //bufferedImage.getScaledInstance(endX, endX, endX)
         return bufferedImage;
     }
 
-
-    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Node> route) {
+    /**
+     *
+     * @param maze
+     * @param route
+     * @return grid as BufferedImage
+     */
+    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route) {
         BufferedImage bufferedImage = drawMaze(maze);
-        
-        //draw route here
-        
-        return null;
+        for (Point p : route) {
+            bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), 16711680);
+        }
+        return bufferedImage;
     }
     
     public static void main(String[] args) {
