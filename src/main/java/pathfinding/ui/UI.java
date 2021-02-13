@@ -1,5 +1,6 @@
 package pathfinding.ui;
 
+import java.awt.Color;
 import pathfinding.domain.Point;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
@@ -84,13 +85,19 @@ public class UI extends Application {
                 infoLabel.setText("Ready to search path!");
                 //endPointSelected = true;
                 searchDjikstraButton.setDisable(false);
+                searchAStarButton.setDisable(false);
             }
         });
         
         searchDjikstraButton.setOnAction((event) -> {
             route = pathFinder.searchDjikstra(startX, startY, endX, endY);
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route, 16711680), null));
         });
+        
+        searchAStarButton.setOnAction((event) -> {
+            route = pathFinder.searchAStar(startX, startY, endX, endY);
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route, Color.GREEN.getRGB()), null));
+        });        
 
     }
     
@@ -121,10 +128,10 @@ public class UI extends Application {
      * @param route
      * @return grid as BufferedImage
      */
-    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route) {
+    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, int rgb) {
         BufferedImage bufferedImage = drawMaze(maze);
         for (Point p : route) {
-            bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), 16711680);
+            bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), rgb);
         }
         return bufferedImage;
     }

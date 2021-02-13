@@ -16,31 +16,24 @@ class PathFind {
         if (canGoFromTo(grid, x, y, x - 1, y)) {
             neighbours.add(new Point(x - 1, y));
         }
-
         if (canGoFromTo(grid, x, y, x - 1, y - 1)) {
             neighbours.add(new Point(x - 1, y - 1));
         }
-
         if (canGoFromTo(grid, x, y, x + 1, y)) {
             neighbours.add(new Point(x + 1, y));
         }
-
         if (canGoFromTo(grid, x, y, x, y + 1)) {
             neighbours.add(new Point(x, y + 1));
         }
-
         if (canGoFromTo(grid, x, y, x, y - 1)) {
             neighbours.add(new Point(x, y - 1));
         }
-
         if (canGoFromTo(grid, x, y, x - 1, y + 1)) {
             neighbours.add(new Point(x - 1, y + 1));
         }
-
         if (canGoFromTo(grid, x, y, x + 1, y - 1)) {
             neighbours.add(new Point(x + 1, y - 1));
         }
-
         if (canGoFromTo(grid, x, y, x + 1, y + 1)) {
             neighbours.add(new Point(x + 1, y + 1));
         }
@@ -49,6 +42,9 @@ class PathFind {
     
 
     private boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
+        if (x1 == x2 && y1 == y2) {
+            return false;
+        }
         if (grid[x1][y1] != 1) {
             return false;
         }

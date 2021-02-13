@@ -1,6 +1,7 @@
 package pathfinding.pathfinder;
 
 import java.util.ArrayList;
+import pathfinding.algo.AStar;
 import pathfinding.algo.Djikstra;
 import pathfinding.domain.Point;
 import pathfinding.file.MapReader;
@@ -11,6 +12,7 @@ public class PathFinder {
 
     private MapReader mapReader;
     private Djikstra djikstra;
+    private AStar aStar;
 
     /**
      *
@@ -18,6 +20,7 @@ public class PathFinder {
     public PathFinder() {
         mapReader = new MapReader();
         djikstra = new Djikstra();
+        aStar = new AStar();
     }
     
     /**
@@ -47,6 +50,18 @@ public class PathFinder {
      */
     public ArrayList<Point> searchDjikstra(int startX, int startY, int endX, int endY) {
         return djikstra.search(this.getGrid(), startX, startY, endX, endY);
+    }
+    
+    /**
+     *
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @return route as list of points
+     */
+    public ArrayList<Point> searchAStar(int startX, int startY, int endX, int endY) {
+        return aStar.search(this.getGrid(), startX, startY, endX, endY);
     }
 
 }

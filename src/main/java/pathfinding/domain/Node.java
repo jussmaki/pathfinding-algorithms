@@ -1,18 +1,8 @@
 package pathfinding.domain;
 
-public class Node implements Comparable<Node> {
+public abstract class Node {
     Point location;
-    float distance;
-
-    /**
-     *
-     * @param locationX
-     * @param locationY
-     */
-    public Node(int locationX, int locationY) {
-        this.location = new Point(locationX, locationY);
-        this.distance = Integer.MAX_VALUE;
-    }
+    double distance;
 
     /**
      *
@@ -20,7 +10,7 @@ public class Node implements Comparable<Node> {
      * @param locationY
      * @param distance
      */
-    public Node(int locationX, int locationY, float distance) {
+    public Node(int locationX, int locationY, double distance) {
         this.location = new Point(locationX, locationY);
         this.distance = distance;
     }
@@ -40,15 +30,5 @@ public class Node implements Comparable<Node> {
     public int getLocationY() {
         return this.location.getLocationY();
     }
-    
-    /**
-     *
-     * @param n
-     * @return
-     */
-    @Override
-    public int compareTo(Node n) {
-        return (int) (this.distance - n.distance);
-    }
-    
+
 }

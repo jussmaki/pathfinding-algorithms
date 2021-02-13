@@ -1,8 +1,8 @@
 package pathfinding.algo;
 
-import pathfinding.domain.Node;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
+import pathfinding.domain.DNode;
 import pathfinding.domain.Point;
 
 public class Djikstra extends PathFind {
@@ -26,12 +26,12 @@ public class Djikstra extends PathFind {
             }
         }
         
-        PriorityQueue<Node> heap = new PriorityQueue<>();
+        PriorityQueue<DNode> heap = new PriorityQueue<>();
         
-        heap.add(new Node(startX, startY));
+        heap.add(new DNode(startX, startY, Integer.MAX_VALUE));
         
         while (!heap.isEmpty()) {
-            Node node = heap.poll();
+            DNode node = heap.poll();
             
             if (visited[node.getLocationX()][node.getLocationY()]) {
                 continue;
@@ -44,7 +44,7 @@ public class Djikstra extends PathFind {
                 if (newDist < curDist) {
                     dist[neighbour.getLocationX()][neighbour.getLocationY()] = newDist;
                     previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(node.getLocationX(), node.getLocationY());
-                    heap.add(new Node(neighbour.getLocationX(), neighbour.getLocationY(), newDist));
+                    heap.add(new DNode(neighbour.getLocationX(), neighbour.getLocationY(), newDist));
                 }
             }
         }
