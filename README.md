@@ -6,6 +6,11 @@ Tietorakenteet ja algoritmit harjoitustyö
 
 [Määrittelydokumentti](dokumentaatio/maarittelydokumentti.md)
 
+[Testausdokumentti](dokumentaatio/testausdokumentti.md)
+
+[Toteutusdokumentti](dokumentaatio/toteutusdokumentti.md)
+
+
 ### Viikkoraportit
 
 [Viikko 1](dokumentaatio/viikkoraportti1.md)
@@ -13,3 +18,5 @@ Tietorakenteet ja algoritmit harjoitustyö
 [Viikko 2](dokumentaatio/viikkoraportti2.md)
 
 [Viikko 3](dokumentaatio/viikkoraportti3.md)
+
+[Viikko 4](dokumentaatio/viikkoraportti4.md)
