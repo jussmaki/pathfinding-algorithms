@@ -47,7 +47,7 @@ public class AStar extends PathFind {
         Result res = new Result();
         res.setPath(path(previous, startX, startY, endX, endY));
         res.setRunTime(endTime-startTime);
-        res.getVisitedNodes();
+        res.setVisitedNodes(visitedNodes);
         return res;
     }
     

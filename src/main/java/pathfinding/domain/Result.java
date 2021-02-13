@@ -1,6 +1,9 @@
 package pathfinding.domain;
 
+//import pathfinding.struct.ArrayList;
+
 import java.util.ArrayList;
+
 
 public class Result {
     private long runTime;

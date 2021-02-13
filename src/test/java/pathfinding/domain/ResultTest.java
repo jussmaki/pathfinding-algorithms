@@ -3,6 +3,7 @@ package pathfinding.domain;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+//import pathfinding.struct.ArrayList;
 
 public class ResultTest {
     

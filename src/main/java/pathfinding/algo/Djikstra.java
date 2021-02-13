@@ -1,10 +1,10 @@
 package pathfinding.algo;
 
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 import pathfinding.domain.DNode;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
+import pathfinding.struct.MinHeap;
 
 public class Djikstra extends PathFind {
 
@@ -30,11 +30,13 @@ public class Djikstra extends PathFind {
         }
         
         PriorityQueue<DNode> heap = new PriorityQueue<>();
+        //MinHeap heap = new MinHeap();
+        
         
         heap.add(new DNode(startX, startY, Integer.MAX_VALUE));
         
         while (!heap.isEmpty()) {
-            DNode node = heap.poll();
+            DNode node = (DNode) heap.poll();
             
             if (visited[node.getLocationX()][node.getLocationY()]) {
                 continue;
@@ -56,7 +58,7 @@ public class Djikstra extends PathFind {
         Result res = new Result();
         res.setPath(path(previous, startX, startY, endX, endY));
         res.setRunTime(endTime-startTime);
-        res.getVisitedNodes();
+        res.setVisitedNodes(visitedNodes);
         return res;
     }
 

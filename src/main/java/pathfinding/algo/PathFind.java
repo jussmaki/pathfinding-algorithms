@@ -1,5 +1,6 @@
 package pathfinding.algo;
 
+//import pathfinding.struct.ArrayList;
 import java.util.ArrayList;
 import pathfinding.domain.Point;
 
