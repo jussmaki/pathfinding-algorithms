@@ -2,6 +2,12 @@ package pathfinding.domain;
 
 public class DNode extends Node implements Comparable<DNode> {    
 
+    /**
+     *
+     * @param locationX
+     * @param locationY
+     * @param distance
+     */
     public DNode(int locationX, int locationY, double distance) {
         super(locationX, locationY, distance);
     }

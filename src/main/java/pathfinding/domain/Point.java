@@ -3,19 +3,36 @@ package pathfinding.domain;
 public class Point {
     private int locationX, locationY;
 
+    /**
+     *
+     * @param locationX
+     * @param locationY
+     */
     public Point(int locationX, int locationY) {
         this.locationX = locationX;
         this.locationY = locationY;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLocationX() {
         return locationX;
     }
 
+    /**
+     *
+     * @return
+     */
     public int getLocationY() {
         return locationY;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -24,6 +41,11 @@ public class Point {
         return hash;
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -45,6 +67,10 @@ public class Point {
         return true;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Point{" + "locationX=" + locationX + ", locationY=" + locationY + '}';

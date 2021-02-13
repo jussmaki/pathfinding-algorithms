@@ -5,6 +5,13 @@ public class ANode extends Node implements Comparable<ANode> {
     //private double heuristics;
     Point endPoint;
     
+    /**
+     *
+     * @param locationX
+     * @param locationY
+     * @param distance
+     * @param endPoint
+     */
     public ANode(int locationX, int locationY, double distance, Point endPoint) {
         super(locationX, locationY, distance);
         //this.heuristics = heuristics;
@@ -19,6 +26,11 @@ public class ANode extends Node implements Comparable<ANode> {
         return Math.sqrt((endPointY - startPointY) * (endPointY - startPointY) + (endPointX - startPointX) * (endPointX - startPointX));
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
     @Override
     public int compareTo(ANode n) {
         double heur = this.heuristics() - n.heuristics();
@@ -31,6 +43,10 @@ public class ANode extends Node implements Comparable<ANode> {
         return 0;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "x: " + this.getLocationX() + ", " + this.getLocationY() + " heuristics: " + this.heuristics();
