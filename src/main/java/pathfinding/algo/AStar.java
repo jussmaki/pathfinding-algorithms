@@ -1,13 +1,15 @@
 package pathfinding.algo;
 
-import java.util.ArrayList;
 import java.util.PriorityQueue;
 import pathfinding.domain.ANode;
 import pathfinding.domain.Point;
+import pathfinding.domain.Result;
 
 public class AStar extends PathFind {
 
-    public ArrayList<Point> search(int[][] arr, int startX, int startY, int endX, int endY) {
+    public Result search(int[][] arr, int startX, int startY, int endX, int endY) {
+        int visitedNodes = 0;
+        long startTime = System.nanoTime();
         Point endPoint = new Point(endX, endY);
         Point[][] previous = new Point[arr.length][arr[0].length];
         boolean[][] visited = new boolean[arr.length][arr[0].length];
@@ -28,9 +30,9 @@ public class AStar extends PathFind {
             if (visited[node.getLocationX()][node.getLocationY()]) {
                 continue;
             }
-            System.out.println(node);
+            //System.out.println(node);
             visited[node.getLocationX()][node.getLocationY()] = true;
-
+            visitedNodes++;
             for (Point neighbour : getNeighbourCells(arr, node.getLocationX(), node.getLocationY())) {
                 int curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
                 int newDist =  dist[node.getLocationX()][node.getLocationY()] + 1;
@@ -41,21 +43,12 @@ public class AStar extends PathFind {
                 }
             }
         }
-        
-        ArrayList<Point> route = new ArrayList<>();
-        if (previous[endX][endY] == null) {
-            return route; //unreachable
-        }
-        Point p = new Point(endX, endY);
-        route.add(p);
-        while (true) {
-            p = previous[p.getLocationX()][p.getLocationY()];
-            route.add(p);
-            if (p.equals(new Point(startX, startY))) {
-                break;
-            }
-        }
-        return route; //return null;
+        long endTime = System.nanoTime();
+        Result res = new Result();
+        res.setPath(path(previous, startX, startY, endX, endY));
+        res.setRunTime(endTime-startTime);
+        res.getVisitedNodes();
+        return res;
     }
     
 }

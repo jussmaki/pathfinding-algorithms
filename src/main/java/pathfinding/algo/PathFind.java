@@ -56,4 +56,21 @@ class PathFind {
         }
         return true;
     }
+    
+    public ArrayList<Point> path(Point[][] previous, int startX, int startY, int endX, int endY) {
+        ArrayList<Point> path = new ArrayList<>();
+        if (previous[endX][endY] == null) {
+            return path; //unreachable
+        }
+        Point p = new Point(endX, endY);
+        path.add(p);
+        while (true) {
+            p = previous[p.getLocationX()][p.getLocationY()];
+            path.add(p);
+            if (p.equals(new Point(startX, startY))) {
+                break;
+            }
+        }
+        return path; 
+    }
 }

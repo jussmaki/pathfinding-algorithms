@@ -18,10 +18,11 @@ import javafx.stage.Stage;
 import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
+import pathfinding.domain.Result;
 
 public class UI extends Application {
 
-    ArrayList<Point> route;
+    Result result;
     PathFinder pathFinder = new PathFinder();    
     int startX = -1;
     int startY = -1;
@@ -90,15 +91,21 @@ public class UI extends Application {
         });
         
         searchDjikstraButton.setOnAction((event) -> {
-            route = pathFinder.searchDjikstra(startX, startY, endX, endY);
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route, 16711680), null));
+            result = pathFinder.searchDjikstra(startX, startY, endX, endY);
+            printResults();
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
-            route = pathFinder.searchAStar(startX, startY, endX, endY);
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), route, Color.GREEN.getRGB()), null));
+            result = pathFinder.searchAStar(startX, startY, endX, endY);
+            printResults();
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), Color.GREEN.getRGB()), null));
         });        
 
+    }
+    
+    private void printResults() {
+        System.out.println(this.result);
     }
     
     /**
@@ -106,7 +113,7 @@ public class UI extends Application {
      * @param maze
      * @return grid as BufferedImage
      */
-    public BufferedImage drawMaze(int[][] maze) {
+    private BufferedImage drawMaze(int[][] maze) {
         BufferedImage bufferedImage = new BufferedImage(maze.length, maze[0].length, BufferedImage.TYPE_INT_RGB);
         for (int x = 0; x < maze.length; x++) {
 
@@ -128,7 +135,7 @@ public class UI extends Application {
      * @param route
      * @return grid as BufferedImage
      */
-    public BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, int rgb) {
+    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, int rgb) {
         BufferedImage bufferedImage = drawMaze(maze);
         for (Point p : route) {
             bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), rgb);

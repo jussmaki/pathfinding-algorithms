@@ -16,8 +16,8 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> route = pathFinder.searchDjikstra(0, 4, 9, 2);
-        assertTrue(route.size() > 0);        
+        ArrayList<Point> path = pathFinder.searchDjikstra(0, 4, 9, 2).getPath();
+        assertTrue(path.size() > 0);        
     }
 
     @Test
@@ -28,8 +28,8 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> route = pathFinder.searchDjikstra(0, 4, 9, 2);
-        assertTrue(route.size() > 0);        
+        ArrayList<Point> path = pathFinder.searchDjikstra(0, 4, 9, 2).getPath();
+        assertTrue(path.size() > 0);        
     }
     
 }

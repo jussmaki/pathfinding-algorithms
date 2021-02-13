@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.PriorityQueue;
 import pathfinding.domain.DNode;
 import pathfinding.domain.Point;
+import pathfinding.domain.Result;
 
 public class Djikstra extends PathFind {
 
@@ -16,7 +17,9 @@ public class Djikstra extends PathFind {
      * @param endY end point x-coordinate
      * @return path as ArrayList
      */
-    public ArrayList<Point> search(int[][] arr, int startX, int startY, int endX, int endY) {
+    public Result search(int[][] arr, int startX, int startY, int endX, int endY) {
+        int visitedNodes = 0;
+        long startTime = System.nanoTime();
         Point[][] previous = new Point[arr.length][arr[0].length];
         boolean[][] visited = new boolean[arr.length][arr[0].length];
         int[][] dist = new int[arr.length][arr[0].length];
@@ -37,7 +40,7 @@ public class Djikstra extends PathFind {
                 continue;
             }
             visited[node.getLocationX()][node.getLocationY()] = true;
-
+            visitedNodes++;
             for (Point neighbour : getNeighbourCells(arr, node.getLocationX(), node.getLocationY())) {
                 int curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
                 int newDist =  dist[node.getLocationX()][node.getLocationY()] + 1;
@@ -48,22 +51,13 @@ public class Djikstra extends PathFind {
                 }
             }
         }
-
         
-        ArrayList<Point> route = new ArrayList<>();
-        if (previous[endX][endY] == null) {
-            return route; //unreachable
-        }
-        Point p = new Point(endX, endY);
-        route.add(p);
-        while (true) {
-            p = previous[p.getLocationX()][p.getLocationY()];
-            route.add(p);
-            if (p.equals(new Point(startX, startY))) {
-                break;
-            }
-        }
-        return route;
+        long endTime = System.nanoTime();
+        Result res = new Result();
+        res.setPath(path(previous, startX, startY, endX, endY));
+        res.setRunTime(endTime-startTime);
+        res.getVisitedNodes();
+        return res;
     }
 
 }
