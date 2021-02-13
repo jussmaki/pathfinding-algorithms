@@ -15,7 +15,7 @@ public class Djikstra extends PathFind {
      * @param startY start point y-coordinate
      * @param endX end point x-coordinate
      * @param endY end point x-coordinate
-     * @return path as ArrayList
+     * @return results as result object
      */
     public Result search(int[][] arr, int startX, int startY, int endX, int endY) {
         int visitedNodes = 0;
@@ -57,7 +57,7 @@ public class Djikstra extends PathFind {
         long endTime = System.nanoTime();
         Result res = new Result();
         res.setPath(path(previous, startX, startY, endX, endY));
-        res.setRunTime(endTime-startTime);
+        res.setRunTime(endTime - startTime);
         res.setVisitedNodes(visitedNodes);
         return res;
     }

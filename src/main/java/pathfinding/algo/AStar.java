@@ -7,6 +7,15 @@ import pathfinding.domain.Result;
 
 public class AStar extends PathFind {
 
+    /**
+     *
+     * @param arr 2d array of map
+     * @param startX start point x-coordinate
+     * @param startY start point y-coordinate
+     * @param endX end point x-coordinate
+     * @param endY end point x-coordinate
+     * @return results as result object
+     */
     public Result search(int[][] arr, int startX, int startY, int endX, int endY) {
         int visitedNodes = 0;
         long startTime = System.nanoTime();
@@ -46,7 +55,7 @@ public class AStar extends PathFind {
         long endTime = System.nanoTime();
         Result res = new Result();
         res.setPath(path(previous, startX, startY, endX, endY));
-        res.setRunTime(endTime-startTime);
+        res.setRunTime(endTime - startTime);
         res.setVisitedNodes(visitedNodes);
         return res;
     }

@@ -18,9 +18,9 @@ public class ArrayList<T> implements Iterable<T> {
 
     public void add(T object) {
         if (cell >= arrSize) {
-            arrSize = arrSize*2;
+            arrSize = arrSize * 2;
             Object[] newArr = new Object[arrSize];
-            for(int i = 0; i < arr.length; i++) {
+            for (int i = 0; i < arr.length; i++) {
                 newArr[i] = arr[i];
             }
             arr = newArr;
