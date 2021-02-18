@@ -58,6 +58,10 @@ class PathFind {
         return true;
     }
     
+    public double getBirdsWayDistance (int fromX, int fromY, int toX, int toY) {
+        return Math.sqrt((toY - fromY) * (toY - fromY) + (toX - fromX) * (toX - fromX));
+    }
+    
     public ArrayList<Point> path(Point[][] previous, int startX, int startY, int endX, int endY) {
         ArrayList<Point> path = new ArrayList<>();
         if (previous[endX][endY] == null) {

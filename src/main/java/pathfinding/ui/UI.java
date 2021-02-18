@@ -93,13 +93,13 @@ public class UI extends Application {
         searchDjikstraButton.setOnAction((event) -> {
             result = pathFinder.searchDjikstra(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), 16711680), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             result = pathFinder.searchAStar(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), Color.GREEN.getRGB()), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
 
     }
@@ -135,10 +135,23 @@ public class UI extends Application {
      * @param route
      * @return grid as BufferedImage
      */
-    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, int rgb) {
+    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, boolean[][] visited, int rgb) {
         BufferedImage bufferedImage = drawMaze(maze);
+        drawVisitedNodesInMaze(bufferedImage, visited);
         for (Point p : route) {
             bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), rgb);
+        }
+
+        return bufferedImage;
+    }
+    
+    private BufferedImage drawVisitedNodesInMaze(BufferedImage bufferedImage, boolean[][] visited) {
+        for (int x = 0; x < visited.length; x++) {
+            for (int y = 0; y < visited[0].length; y++) {
+                if (visited[x][y]) {
+                    bufferedImage.setRGB(x, y, Color.LIGHT_GRAY.getRGB());
+                }
+            }
         }
         return bufferedImage;
     }

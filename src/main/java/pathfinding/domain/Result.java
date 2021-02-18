@@ -7,15 +7,17 @@ import java.util.ArrayList;
 
 public class Result {
     private long runTime;
-    private int visitedNodes;
+    private int visitedNoNodes;
+    private double distance;
     private ArrayList<Point> path;
+    private boolean[][] visited;
 
     /**
      *
      */
     public Result() {
         this.runTime = runTime;
-        this.visitedNodes = visitedNodes;
+        this.visitedNoNodes = visitedNoNodes;
         this.path = path;
     }
 
@@ -39,16 +41,24 @@ public class Result {
      *
      * @return
      */
-    public int getVisitedNodes() {
-        return visitedNodes;
+    public int getVisitedNoNodes() {
+        return visitedNoNodes;
     }
 
     /**
      *
-     * @param visitedNodes
+     * @param visitedNoNodes
      */
-    public void setVisitedNodes(int visitedNodes) {
-        this.visitedNodes = visitedNodes;
+    public void setVisitedNoNodes(int visitedNoNodes) {
+        this.visitedNoNodes = visitedNoNodes;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
     /**
@@ -66,6 +76,14 @@ public class Result {
     public void setPath(ArrayList<Point> path) {
         this.path = path;
     }
+
+    public boolean[][] getVisited() {
+        return visited;
+    }
+
+    public void setVisited(boolean[][] visited) {
+        this.visited = visited;
+    }
     
     /**
      *
@@ -81,7 +99,7 @@ public class Result {
      */
     @Override
     public String toString() {
-        return "runtime: " + (this.runTime / 1e9) + " s, nodes in path: " + this.getNoNodesInPath() + " visited nodes: " + this.getVisitedNodes();
+        return "runtime: " + (this.runTime / 1e9) + " s, distance: " + this.getDistance() + " nodes in path: " + this.getNoNodesInPath() + " visited nodes: " + this.getVisitedNoNodes();
     }
     
 }
