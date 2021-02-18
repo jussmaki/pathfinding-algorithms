@@ -73,7 +73,7 @@ public class Point {
      */
     @Override
     public String toString() {
-        return "Point{" + "locationX=" + locationX + ", locationY=" + locationY + '}';
+        return locationX + "," + locationY;
     }    
     
 }

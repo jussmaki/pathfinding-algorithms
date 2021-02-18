@@ -31,8 +31,8 @@ public class Djikstra extends PathFind {
         }
         dist[startX][startY] = 0;
         
-        PriorityQueue<DNode> heap = new PriorityQueue<>();
-        //MinHeap heap = new MinHeap();
+        //PriorityQueue<DNode> heap = new PriorityQueue<>();
+        MinHeap heap = new MinHeap();
         
         
         heap.add(new DNode(startX, startY, 0));
@@ -51,6 +51,7 @@ public class Djikstra extends PathFind {
             
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
+            //System.out.println(heap);
             for (Point neighbour : getNeighbourCells(arr, node.getLocationX(), node.getLocationY())) {
                 double curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
                 double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
