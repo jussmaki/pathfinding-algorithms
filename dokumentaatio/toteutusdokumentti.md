@@ -39,7 +39,11 @@ Ei ajankohtainen.
 
 ## Suorituskyky- ja O-analyysivertailu
 
-Ei ajankohtainen.
+```bash
+Djikstra - runtime: 0.105976779 s, distance: 179.33809511662415 nodes in path: 153 visited nodes: 41119
+AStar - runtime: 0.026113823 s, distance: 179.33809511662415 nodes in path: 153 visited nodes: 7100
+```
+Algoritmien suorituskykytestaus on aloitettu.
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
