@@ -62,7 +62,7 @@ public class UI extends Application {
         
         loadButton.setOnAction((event) -> {
             try {
-                pathFinder.openMapFile("AR0017SR.map");
+                pathFinder.openMapFile(fileNameTextField.getText());
             } catch (Exception ex) {
                 Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
             }
