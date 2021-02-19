@@ -63,10 +63,10 @@ public class MinHeapTest {
         MinHeap ownHeap = new MinHeap();
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
-        int locationX = r.nextInt(1024);
-        int locationY = r.nextInt(1024);
-        double distance = r.nextDouble() + 1000;
         for (int i=0; i < 1000000; i++) {
+            int locationX = r.nextInt(1024);
+            int locationY = r.nextInt(1024);
+            double distance = r.nextDouble() + 1000;
             ownHeap.add(new Node(locationX, locationY, distance));
             javaHeap.add(new Node(locationX, locationY, distance));
             if (r.nextInt() % 10 == 0) {
@@ -137,10 +137,10 @@ public class MinHeapTest {
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
         Point endPoint = new Point(r.nextInt(1024), r.nextInt(1024));
-        int locationX = r.nextInt(1024);
-        int locationY = r.nextInt(1024);
-        double distance = r.nextDouble() + 1000;
         for (int i=0; i < 1000000; i++) {
+            int locationX = r.nextInt(1024);
+            int locationY = r.nextInt(1024);
+            double distance = r.nextDouble() + 1000;
             ownHeap.add(new Node(locationX, locationY, distance, endPoint));
             javaHeap.add(new Node(locationX, locationY, distance, endPoint));
             if (r.nextInt() % 10 == 0) {
