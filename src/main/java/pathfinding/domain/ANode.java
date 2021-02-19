@@ -34,10 +34,11 @@ public class ANode extends Node implements Comparable<ANode> {
     @Override
     public int compareTo(ANode n) {
         double heur = this.heuristics() - n.heuristics();
-        if (heur > 0) {
+        double diff = this.distance - n.distance;
+        if (heur+diff > 0) {
             return 1;
         }
-        if (heur < 0) {
+        if (heur+diff < 0) {
             return -1;
         }
         return 0;

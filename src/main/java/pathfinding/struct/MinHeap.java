@@ -9,7 +9,7 @@ public class MinHeap {
     int last;
     
     public MinHeap() {
-        arrSize = 8;
+        arrSize = 1024;
         heap = new DNode[arrSize];
         //heap[0] = null;
         last = 0;
@@ -68,6 +68,7 @@ public class MinHeap {
 
     private void expandHeap() {
             arrSize = arrSize*2;
+            //System.out.println("expanding heap, heap size: " + arrSize);            
             DNode[] newArr = new DNode[arrSize];
             for(int i = 0; i < heap.length; i++) {
                 newArr[i] = heap[i];
