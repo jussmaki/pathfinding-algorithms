@@ -67,13 +67,13 @@ public class MinHeap {
     }
 
     private void expandHeap() {
-            arrSize = arrSize*2;
-            //System.out.println("expanding heap, heap size: " + arrSize);            
-            Node[] newArr = new Node[arrSize];
-            for(int i = 0; i < heap.length; i++) {
-                newArr[i] = heap[i];
-            }
-            heap = newArr;
+        arrSize = arrSize * 2;
+        //System.out.println("expanding heap, heap size: " + arrSize);            
+        Node[] newArr = new Node[arrSize];
+        for (int i = 0; i < heap.length; i++) {
+            newArr[i] = heap[i];
+        }
+        heap = newArr;
     }
 
     private void swap(int a, int b) {

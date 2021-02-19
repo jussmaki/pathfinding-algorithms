@@ -1,9 +1,7 @@
 package pathfinding.pathfinder;
 
-import java.util.ArrayList;
 import pathfinding.algo.AStar;
 import pathfinding.algo.Djikstra;
-import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
 

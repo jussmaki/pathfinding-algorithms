@@ -58,7 +58,7 @@ class PathFind {
         return true;
     }
     
-    public double getBirdsWayDistance (int fromX, int fromY, int toX, int toY) {
+    public double getBirdsWayDistance(int fromX, int fromY, int toX, int toY) {
         return Math.sqrt((toY - fromY) * (toY - fromY) + (toX - fromX) * (toX - fromX));
     }
     

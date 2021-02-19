@@ -23,7 +23,7 @@ public class Node {
     }
 
     public int compare(Node n) {
-        if (endPoint==null) {
+        if (endPoint == null) {
             return compareDistance(n);
         }
         return compareDistancePlusHeuristics(n);
@@ -43,10 +43,10 @@ public class Node {
     private int compareDistancePlusHeuristics(Node n) {
         double heur = this.heuristics() - n.heuristics();
         double diff = this.distance - n.distance;
-        if (heur+diff > 0) {
+        if (heur + diff > 0) {
             return 1;
         }
-        if (heur+diff < 0) {
+        if (heur + diff < 0) {
             return -1;
         }
         return 0;
