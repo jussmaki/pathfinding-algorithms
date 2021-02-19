@@ -1,5 +1,7 @@
 package pathfinding.domain;
 
+import java.util.Objects;
+
 public class Node {
     Point location;
     double distance;
@@ -22,12 +24,12 @@ public class Node {
 
     public int compare(Node n) {
         if (endPoint==null) {
-            return compareDjikstra(n);
+            return compareDistance(n);
         }
-        return compareAStar(n);
+        return compareDistancePlusHeuristics(n);
     }    
     
-    private int compareDjikstra(Node n) {
+    private int compareDistance(Node n) {
         double diff = this.distance - n.distance;
         if (diff > 0) {
             return 1;
@@ -38,7 +40,7 @@ public class Node {
         return 0;
     }
 
-    private int compareAStar(Node n) {
+    private int compareDistancePlusHeuristics(Node n) {
         double heur = this.heuristics() - n.heuristics();
         double diff = this.distance - n.distance;
         if (heur+diff > 0) {
@@ -91,6 +93,32 @@ public class Node {
     public void setLocation(Point location) {
         this.location = location;
     }    
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Node other = (Node) obj;
+        if (Double.doubleToLongBits(this.distance) != Double.doubleToLongBits(other.distance)) {
+            return false;
+        }
+        if (!Objects.equals(this.location, other.location)) {
+            return false;
+        }
+        if (!Objects.equals(this.endPoint, other.endPoint)) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 
     @Override
     public String toString() {
