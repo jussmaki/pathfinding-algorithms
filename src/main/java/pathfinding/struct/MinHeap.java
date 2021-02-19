@@ -40,6 +40,14 @@ public class MinHeap {
         return node;
     }
     
+    public boolean isEmpty() {
+        //System.out.println(this + " last: " + last);
+        if (last > 0) {
+            return false;
+        }
+        return true;
+    }
+    
     private int left(int p) {
         if (2 * p > last) {
             return 0;
@@ -56,14 +64,6 @@ public class MinHeap {
     
     private int parent(int p) {
         return (int) p / 2;
-    }
-
-    public boolean isEmpty() {
-        //System.out.println(this + " last: " + last);
-        if (last > 0) {
-            return false;
-        }
-        return true;
     }
 
     private void expandHeap() {
