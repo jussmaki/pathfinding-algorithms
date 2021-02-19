@@ -28,7 +28,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = pathFinder.searchDjikstra(0, 4, 9, 2).getPath();
+        ArrayList<Point> path = pathFinder.searchAStar(0, 4, 9, 2).getPath();
         assertTrue(path.size() > 0);        
     }
     
