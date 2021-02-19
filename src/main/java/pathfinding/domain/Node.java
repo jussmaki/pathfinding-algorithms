@@ -18,11 +18,23 @@ public class Node {
         this.distance = distance;
     }
     
+    /**
+     *
+     * @param locationX
+     * @param locationY
+     * @param distance
+     * @param endPoint
+     */
     public Node(int locationX, int locationY, double distance, Point endPoint) {
         this(locationX, locationY, distance);
         this.endPoint = endPoint;
     }
 
+    /**
+     *
+     * @param n
+     * @return
+     */
     public int compare(Node n) {
         if (endPoint == null) {
             return compareDistance(n);
@@ -77,6 +89,10 @@ public class Node {
         return this.location.getLocationY();
     }
 
+    /**
+     *
+     * @return
+     */
     public double getDistance() {
         return distance;
     }
@@ -84,6 +100,13 @@ public class Node {
     /*public Point getLocation() {
         return location;
     }*/
+
+    /**
+     *
+     * @param obj
+     * @return
+     */
+
 
     @Override
     public boolean equals(Object obj) {
@@ -109,6 +132,10 @@ public class Node {
         return true;
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return "Node{" + "location=" + location + ", distance=" + distance + '}';
