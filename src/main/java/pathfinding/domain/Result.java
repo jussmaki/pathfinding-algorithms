@@ -1,9 +1,7 @@
 package pathfinding.domain;
 
 //import pathfinding.struct.ArrayList;
-
 import java.util.ArrayList;
-
 
 public class Result {
     private long runTime;
@@ -53,10 +51,18 @@ public class Result {
         this.visitedNoNodes = visitedNoNodes;
     }
 
+    /**
+     *
+     * @return
+     */
     public double getDistance() {
         return distance;
     }
 
+    /**
+     *
+     * @param distance
+     */
     public void setDistance(double distance) {
         this.distance = distance;
     }
@@ -77,10 +83,18 @@ public class Result {
         this.path = path;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean[][] getVisited() {
         return visited;
     }
 
+    /**
+     *
+     * @param visited
+     */
     public void setVisited(boolean[][] visited) {
         this.visited = visited;
     }

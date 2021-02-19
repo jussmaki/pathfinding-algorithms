@@ -17,6 +17,7 @@ public class Node {
         this.location = new Point(locationX, locationY);
         this.distance = distance;
     }
+    
     public Node(int locationX, int locationY, double distance, Point endPoint) {
         this(locationX, locationY, distance);
         this.endPoint = endPoint;

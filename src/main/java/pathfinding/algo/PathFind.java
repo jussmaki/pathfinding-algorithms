@@ -58,10 +58,27 @@ class PathFind {
         return true;
     }
     
+     /**
+     *
+     * @param fromX from x-coordinate
+     * @param fromY from y-coordinate
+     * @param toX to x-coordinate
+     * @param toY to y-coordinate
+     * @return euclidean distance of two points
+     */
     public double getBirdsWayDistance(int fromX, int fromY, int toX, int toY) {
         return Math.sqrt((toY - fromY) * (toY - fromY) + (toX - fromX) * (toX - fromX));
     }
     
+     /**
+     *
+     * @param previous array of previous points
+     * @param startX start x-coordinate
+     * @param startY start y-coordinate
+     * @param endX end x-coordinate
+     * @param endY end y-coordinate
+     * @return path as points in arraylist
+     */
     public ArrayList<Point> path(Point[][] previous, int startX, int startY, int endX, int endY) {
         ArrayList<Point> path = new ArrayList<>();
         if (previous[endX][endY] == null) {

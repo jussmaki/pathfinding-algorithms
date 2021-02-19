@@ -8,6 +8,9 @@ public class MinHeap {
     private Node[] heap;
     private int last;
     
+    /**
+     *
+     */
     public MinHeap() {
         arrSize = 1024;
         heap = new Node[arrSize];
@@ -15,6 +18,10 @@ public class MinHeap {
         last = 0;
     }
 
+    /**
+     *
+     * @param node node to add in heap
+     */
     public void add(Node node) {
         if (last >= arrSize - 1) {
             expandHeap();
@@ -32,6 +39,10 @@ public class MinHeap {
         return heap[1];
     }*/
 
+    /**
+     *
+     * @return smallest node in heap
+     */
     public Node poll() {
         Node node = heap[1];
         heap[1] = heap[last];
@@ -40,6 +51,10 @@ public class MinHeap {
         return node;
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean isEmpty() {
         //System.out.println(this + " last: " + last);
         if (last > 0) {
