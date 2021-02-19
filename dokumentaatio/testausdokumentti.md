@@ -12,4 +12,4 @@ Tällä hetkellä ohjelmassa on automaattisia testejä seuraaville luokille: ASt
 
 ![testikattavuus](testikattavuus190221.png)
 
-Testien rivikattavuus on tällä hetkellä 69 prosenttia ja haaraumakatavuus 73 prosenttia.
+Testien rivikattavuus on tällä hetkellä 71 prosenttia ja haaraumakatavuus 77 prosenttia.
