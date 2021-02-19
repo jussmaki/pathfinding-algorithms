@@ -20,3 +20,5 @@ Tietorakenteet ja algoritmit harjoitustyö
 [Viikko 3](dokumentaatio/viikkoraportti3.md)
 
 [Viikko 4](dokumentaatio/viikkoraportti4.md)
+
+[Viikko 5](dokumentaatio/viikkoraportti5.md)
