@@ -31,18 +31,6 @@ public class Point {
 
     /**
      *
-     * @return
-     */
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 43 * hash + this.locationX;
-        hash = 43 * hash + this.locationY;
-        return hash;
-    }
-
-    /**
-     *
      * @param obj
      * @return
      */

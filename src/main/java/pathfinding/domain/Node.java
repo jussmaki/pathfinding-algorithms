@@ -76,23 +76,13 @@ public class Node {
         return this.location.getLocationY();
     }
 
-    //public abstract int compareTo(Node n);
-
     public double getDistance() {
         return distance;
     }
 
-    public void setDistance(double distance) {
-        this.distance = distance;
-    }
-    
-    public Point getLocation() {
+    /*public Point getLocation() {
         return location;
-    }
-
-    public void setLocation(Point location) {
-        this.location = location;
-    }    
+    }*/
 
     @Override
     public boolean equals(Object obj) {
@@ -118,8 +108,6 @@ public class Node {
         return true;
     }
     
-    
-
     @Override
     public String toString() {
         return "Node{" + "location=" + location + ", distance=" + distance + '}';

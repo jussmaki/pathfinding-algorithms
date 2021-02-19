@@ -4,9 +4,9 @@ import pathfinding.domain.Node;
 
 public class MinHeap {
 
-    int arrSize;
-    Node[] heap;
-    int last;
+    private int arrSize;
+    private Node[] heap;
+    private int last;
     
     public MinHeap() {
         arrSize = 1024;
@@ -28,9 +28,9 @@ public class MinHeap {
         }
     }
     
-    public Node min() {
+    /*public Node min() {
         return heap[1];
-    }
+    }*/
 
     public Node poll() {
         Node node = heap[1];
@@ -102,19 +102,4 @@ public class MinHeap {
         }
     }
 
-    private String nodes() {
-        String tulos = "";
-        for (Node n : heap) {
-            if (n==null) {
-                continue;
-            }
-            tulos = tulos + /*n.getLocation() +*/ " " + (int) n.getDistance() + " ";
-        }
-        return tulos;
-    }
-    
-    @Override
-    public String toString() {
-        return "MinHeap{" + "heap=" + nodes() + '}';
-    }
 }

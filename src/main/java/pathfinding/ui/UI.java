@@ -41,7 +41,7 @@ public class UI extends Application {
         FlowPane flow = new FlowPane();
         flow.setPadding(new Insets(10, 10, 10, 10));
         flow.setHgap(5);
-        TextField fileNameTextField = new TextField("AR0017SR.map");
+        TextField fileNameTextField = new TextField("resources/AR0017SR.map");
         Button loadButton = new Button("Load");
         Button searchDjikstraButton = new Button("Djikstra!");
         searchDjikstraButton.setDisable(true);

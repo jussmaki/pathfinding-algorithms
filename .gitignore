@@ -15,8 +15,3 @@ gradle-app.setting
 
 # Ignore Gradle build output directory
 build
-
-AR0017SR.map
-16room_000.map
-maze512-8-2.map
-Paris_0_1024.map

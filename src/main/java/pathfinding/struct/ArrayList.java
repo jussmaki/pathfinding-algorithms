@@ -6,9 +6,9 @@ import java.util.function.Consumer;
 
 public class ArrayList<T> implements Iterable<T> {
 
-    int arrSize;
-    Object[] arr;
-    int cell;
+    private int arrSize;
+    private Object[] arr;
+    private int cell;
     
     public ArrayList() {
         arr = new Object[8];
