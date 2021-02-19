@@ -6,10 +6,10 @@ Tämä dokumentti on vielä vaiheessa. Sen sisältö tulee vielä päivittymää
 
 Ohjelmalle on suoritettu kehitystyön ohessa manuaalista järjestelmätestausta. Ohjelmalle on testatessa annettu syötteeksi sivulta https://movingai.com/benchmarks/grids.html löytyviä karttoja. Lisäksi ohjelmalle on kirjoitettu yksikkötestejä.
 
-Tällä hetkellä ohjelmassa on automaattisia testejä seuraaville luokille: AStar, Djikstra, PathFind. Result, Pathfinder, MapReader.
+Tällä hetkellä ohjelmassa on automaattisia testejä seuraaville luokille: AStar, Djikstra, PathFind. Result, Pathfinder, MapReader ja MinHeap.
 
 ### testikattavuus
 
-![testikattavuus](testikattavuus130221.png)
+![testikattavuus](testikattavuus190221.png)
 
-Testien rivikattavuus on tällä hetkellä 62 prosenttia ja haaraumakatavuus 75 prosenttia.
+Testien rivikattavuus on tällä hetkellä 69 prosenttia ja haaraumakatavuus 73 prosenttia.
