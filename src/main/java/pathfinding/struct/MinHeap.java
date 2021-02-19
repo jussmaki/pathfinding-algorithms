@@ -1,21 +1,21 @@
 package pathfinding.struct;
 
-import pathfinding.domain.DNode;
+import pathfinding.domain.Node;
 
 public class MinHeap {
 
     int arrSize;
-    DNode[] heap;
+    Node[] heap;
     int last;
     
     public MinHeap() {
         arrSize = 1024;
-        heap = new DNode[arrSize];
+        heap = new Node[arrSize];
         //heap[0] = null;
         last = 0;
     }
 
-    public void add(DNode node) {
+    public void add(Node node) {
         if (last >= arrSize - 1) {
             expandHeap();
         }
@@ -28,12 +28,12 @@ public class MinHeap {
         }
     }
     
-    public DNode min() {
+    public Node min() {
         return heap[1];
     }
 
-    public DNode poll() {
-        DNode node = heap[1];
+    public Node poll() {
+        Node node = heap[1];
         heap[1] = heap[last];
         last--;
         truncate(1);
@@ -69,7 +69,7 @@ public class MinHeap {
     private void expandHeap() {
             arrSize = arrSize*2;
             //System.out.println("expanding heap, heap size: " + arrSize);            
-            DNode[] newArr = new DNode[arrSize];
+            Node[] newArr = new Node[arrSize];
             for(int i = 0; i < heap.length; i++) {
                 newArr[i] = heap[i];
             }
@@ -77,7 +77,7 @@ public class MinHeap {
     }
 
     private void swap(int a, int b) {
-        DNode h = heap[a];
+        Node h = heap[a];
         heap[a] = heap[b];
         heap[b] = h;
     }
@@ -104,7 +104,7 @@ public class MinHeap {
 
     private String nodes() {
         String tulos = "";
-        for (DNode n : heap) {
+        for (Node n : heap) {
             if (n==null) {
                 continue;
             }
