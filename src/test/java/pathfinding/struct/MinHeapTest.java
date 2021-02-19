@@ -59,7 +59,28 @@ public class MinHeapTest {
     }
     
     @Test
-    public void heapWorksDistancePlusHeuristics() {
+    public void heapWorksDistance3() {
+        MinHeap ownHeap = new MinHeap();
+        PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
+        Random r = new Random();
+        int locationX = r.nextInt(1024);
+        int locationY = r.nextInt(1024);
+        double distance = r.nextDouble() + 1000;
+        for (int i=0; i < 1000000; i++) {
+            ownHeap.add(new Node(locationX, locationY, distance));
+            javaHeap.add(new Node(locationX, locationY, distance));
+            if (r.nextInt() % 10 == 0) {
+                assertEquals(javaHeap.poll(), ownHeap.poll());
+            }
+        }
+        while (!javaHeap.isEmpty()) {
+            assertEquals(javaHeap.poll(), ownHeap.poll());
+        }
+        assertTrue(ownHeap.isEmpty());
+    }
+    
+    @Test
+    public void heapWorksDistancePlusHeuristics1() {
         MinHeap ownHeap = new MinHeap();
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
@@ -108,6 +129,28 @@ public class MinHeapTest {
         while (!javaHeap.isEmpty()) {
             assertTrue(javaHeap.poll().getDistance() == ownHeap.poll().getDistance());
         }
+    }
+    
+    @Test
+    public void heapWorksDistancePlusHeuristics3() {
+        MinHeap ownHeap = new MinHeap();
+        PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
+        Random r = new Random();
+        Point endPoint = new Point(r.nextInt(1024), r.nextInt(1024));
+        int locationX = r.nextInt(1024);
+        int locationY = r.nextInt(1024);
+        double distance = r.nextDouble() + 1000;
+        for (int i=0; i < 1000000; i++) {
+            ownHeap.add(new Node(locationX, locationY, distance, endPoint));
+            javaHeap.add(new Node(locationX, locationY, distance, endPoint));
+            if (r.nextInt() % 10 == 0) {
+                assertEquals(javaHeap.poll(), ownHeap.poll());
+            }
+        }
+        while (!javaHeap.isEmpty()) {
+            assertEquals(javaHeap.poll(), ownHeap.poll());
+        }
+        assertTrue(ownHeap.isEmpty());
     }
 
 }
