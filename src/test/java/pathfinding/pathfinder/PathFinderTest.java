@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 import org.junit.Test;
 import pathfinding.domain.Point;
+import utils.PSUtil;
 
 public class PathFinderTest {
 
@@ -16,7 +17,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = pathFinder.searchDjikstra(0, 4, 9, 2).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchDjikstra(0, 4, 9, 2).getPath());
         assertTrue(path.size() > 0);        
     }
 
@@ -28,7 +29,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = pathFinder.searchAStar(0, 4, 9, 2).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchAStar(0, 4, 9, 2).getPath());
         assertTrue(path.size() > 0);        
     }
     

@@ -14,15 +14,15 @@ public class PointStack {
     public PointStack() {
         arr = new Point[8];
         arrSize = 8;
-        last = -1;
+        last = 0;
     }
 
-    public void push(Point p) {
-        last++;        
+    public void push(Point p) {       
         if (last >= arrSize) {
             expandArray();
-        }      
+        }
         arr[last] = p;
+        last++; 
     }
     
     private void expandArray() {
@@ -42,8 +42,8 @@ public class PointStack {
     }
     
     public Point pop() {
+        last--;        
         Point p = arr[last];
-        last--;
         return p;
     }
     /**
@@ -54,12 +54,12 @@ public class PointStack {
         return last;
     }
     
-    public Object[] toArray() {
+    /*public Object[] toArray() {
         Point[] ret = new Point[last];
         for (int i=0; i < ret.length; i++) {
             ret[i] = arr[i];
         }
         return ret;
-    }
+    }*/
     
 }

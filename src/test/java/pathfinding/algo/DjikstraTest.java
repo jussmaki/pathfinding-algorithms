@@ -1,14 +1,15 @@
 package pathfinding.algo;
 
+import utils.PSUtil;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.junit.Before;
 import org.junit.Test;
 import pathfinding.domain.Point;
 
 public class DjikstraTest {
-
     
     @Test
     public void findsNotRouteWhenThereIsNoRoute() {
@@ -16,7 +17,7 @@ public class DjikstraTest {
         int[][] arr = {{1, 1, 1},
                       {0, 0, 0},
                       {1, 1, 1}};
-        ArrayList<Point> path = djikstra.search(arr, 0, 0, 2, 2).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(djikstra.search(arr, 0, 0, 2, 2).getPath());
         assertEquals(0, path.size());
     }
     
@@ -26,7 +27,7 @@ public class DjikstraTest {
         int[][] arr = {{1, 1, 1},
                       {1, 1, 1},
                       {1, 1, 1}};
-        ArrayList<Point> path = djikstra.search(arr, 0, 0, 2, 2).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(djikstra.search(arr, 0, 0, 2, 2).getPath());
         assertTrue(path.size() > 0);
     }
     
@@ -38,7 +39,7 @@ public class DjikstraTest {
                       {1, 0, 1, 1, 1},
                       {1, 1, 0, 0, 1},
                       {1, 1, 1, 1, 1}};
-        ArrayList<Point> path = djikstra.search(arr, 0, 1, 4, 3).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(djikstra.search(arr, 0, 1, 4, 3).getPath());
         assertTrue(path.size() > 0);
     }    
 
@@ -50,7 +51,7 @@ public class DjikstraTest {
                       {1, 0, 1, 1, 1},
                       {1, 1, 0, 0, 1},
                       {1, 1, 1, 1, 1}};
-        ArrayList<Point> path = djikstra.search(arr, 0, 1, 4, 3).getPath();
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(djikstra.search(arr, 0, 1, 4, 3).getPath());
         assertFalse(path.contains(new Point(0,2)));
         assertFalse(path.contains(new Point(1,3)));
         assertFalse(path.contains(new Point(2,1)));
