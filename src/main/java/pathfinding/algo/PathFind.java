@@ -1,8 +1,7 @@
 package pathfinding.algo;
 
-//import pathfinding.struct.ArrayList;
-import java.util.ArrayList;
 import pathfinding.domain.Point;
+import pathfinding.struct.PointStack;
 
 class PathFind {
      /**
@@ -12,31 +11,31 @@ class PathFind {
      * @param y y-coordinate
      * @return neighbour coordinate points as ArrayList
      */
-    public ArrayList<Point> getNeighbourCells(int[][] grid, int x, int y) {
-        ArrayList<Point> neighbours = new ArrayList<>();
+    public PointStack getNeighbourCells(int[][] grid, int x, int y) {
+        PointStack neighbours = new PointStack();
         if (canGoFromTo(grid, x, y, x - 1, y)) {
-            neighbours.add(new Point(x - 1, y));
+            neighbours.push(new Point(x - 1, y));
         }
         if (canGoFromTo(grid, x, y, x - 1, y - 1)) {
-            neighbours.add(new Point(x - 1, y - 1));
+            neighbours.push(new Point(x - 1, y - 1));
         }
         if (canGoFromTo(grid, x, y, x + 1, y)) {
-            neighbours.add(new Point(x + 1, y));
+            neighbours.push(new Point(x + 1, y));
         }
         if (canGoFromTo(grid, x, y, x, y + 1)) {
-            neighbours.add(new Point(x, y + 1));
+            neighbours.push(new Point(x, y + 1));
         }
         if (canGoFromTo(grid, x, y, x, y - 1)) {
-            neighbours.add(new Point(x, y - 1));
+            neighbours.push(new Point(x, y - 1));
         }
         if (canGoFromTo(grid, x, y, x - 1, y + 1)) {
-            neighbours.add(new Point(x - 1, y + 1));
+            neighbours.push(new Point(x - 1, y + 1));
         }
         if (canGoFromTo(grid, x, y, x + 1, y - 1)) {
-            neighbours.add(new Point(x + 1, y - 1));
+            neighbours.push(new Point(x + 1, y - 1));
         }
         if (canGoFromTo(grid, x, y, x + 1, y + 1)) {
-            neighbours.add(new Point(x + 1, y + 1));
+            neighbours.push(new Point(x + 1, y + 1));
         }
         return neighbours;
     }
@@ -79,20 +78,23 @@ class PathFind {
      * @param endY end y-coordinate
      * @return path as points in arraylist
      */
-    public ArrayList<Point> path(Point[][] previous, int startX, int startY, int endX, int endY) {
-        ArrayList<Point> path = new ArrayList<>();
+    public PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
+        PointStack path = new PointStack();
         if (previous[endX][endY] == null) {
             return path; //unreachable
         }
         Point p = new Point(endX, endY);
-        path.add(p);
+        path.push(p);
         while (true) {
+            //Point previousPoint = p;
             p = previous[p.getLocationX()][p.getLocationY()];
-            path.add(p);
-            if (p.equals(new Point(startX, startY))) {
+            //p.setPreviousPoint(previousPoint);
+            path.push(p);
+            //System.out.println(p);
+            if (p.getLocationX() == startX && p.getLocationY() == startY) { //  equals(new Point(startX, startY))) {
                 break;
             }
         }
-        return path; 
+        return path;
     }
 }

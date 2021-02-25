@@ -19,6 +19,7 @@ import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
 import pathfinding.domain.Result;
+import pathfinding.struct.PointStack;
 
 public class UI extends Application {
 
@@ -93,15 +94,23 @@ public class UI extends Application {
         searchDjikstraButton.setOnAction((event) -> {
             result = pathFinder.searchDjikstra(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), result.getVisited(), 16711680), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             result = pathFinder.searchAStar(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), result.getPath(), result.getVisited(), Color.GREEN.getRGB()), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
 
+    }
+    
+    private ArrayList<Point> convertPSToArrayList(PointStack ps) {
+        ArrayList<Point> ret = new ArrayList<>();
+        while (!ps.isEmpty()) {
+            ret.add(ps.pop());
+        }
+        return ret;
     }
     
     private void printResults() {

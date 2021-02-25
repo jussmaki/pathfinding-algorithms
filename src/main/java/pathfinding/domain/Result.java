@@ -1,23 +1,14 @@
 package pathfinding.domain;
 
-//import pathfinding.struct.ArrayList;
 import java.util.ArrayList;
+import pathfinding.struct.PointStack;
 
 public class Result {
     private long runTime;
     private int visitedNoNodes;
     private double distance;
-    private ArrayList<Point> path;
+    private PointStack path;
     private boolean[][] visited;
-
-    /**
-     *
-     */
-    public Result() {
-        this.runTime = runTime;
-        this.visitedNoNodes = visitedNoNodes;
-        this.path = path;
-    }
 
     /**
      *
@@ -71,7 +62,7 @@ public class Result {
      *
      * @return
      */
-    public ArrayList<Point> getPath() {
+    public PointStack getPath() {
         return path;
     }
 
@@ -79,7 +70,7 @@ public class Result {
      *
      * @param path
      */
-    public void setPath(ArrayList<Point> path) {
+    public void setPath(PointStack path) {
         this.path = path;
     }
 

@@ -4,6 +4,7 @@ import pathfinding.domain.Node;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.struct.MinHeap;
+import pathfinding.struct.PointStack;
 
 public class AStar extends PathFind {
 
@@ -53,7 +54,9 @@ public class AStar extends PathFind {
             //System.out.println(node);
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
-            for (Point neighbour : getNeighbourCells(arr, node.getLocationX(), node.getLocationY())) {
+            PointStack ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
+            while(!ps.isEmpty()) {
+                Point neighbour = ps.pop();
                 double curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
                 double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
                 if (newDist < curDist) {
