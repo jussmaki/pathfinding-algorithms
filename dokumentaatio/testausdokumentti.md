@@ -4,12 +4,16 @@ Tämä dokumentti on vielä vaiheessa. Sen sisältö tulee vielä päivittymää
 
 ## Ohjelman tastaamisesta
 
-Ohjelmalle on suoritettu kehitystyön ohessa manuaalista järjestelmätestausta. Ohjelmalle on testatessa annettu syötteeksi sivulta https://movingai.com/benchmarks/grids.html löytyviä karttoja. Lisäksi ohjelmalle on kirjoitettu yksikkötestejä.
+Ohjelmalle on suoritettu kehitystyön ohessa manuaalista järjestelmätestausta. Ohjelmalle on testatessa annettu syötteeksi sivulta https://movingai.com/benchmarks/grids.html löytyviä karttoja. Lisäksi ohjelmalle on kirjoitettu yksikkötestejä ja integraatiotestejä.
 
-Tällä hetkellä ohjelmassa on automaattisia testejä seuraaville luokille: AStar, Djikstra, PathFind. Result, Pathfinder, MapReader ja MinHeap.
+Tällä hetkellä ohjelmassa on automaattisia testejä kaikille käyttöliittymän ulkopuolisille luokille.
+
+## Omien tietorakenteiden yksikkötestit
+
+MinHeap ja PointStack -luokkien yksikkötestit vertaavat tietorakenteen toimintaan Javan omien toteutusten toimintaan.
 
 ### testikattavuus
 
-![testikattavuus](testikattavuus190221.png)
+![testikattavuus](testikattavuus2702.png)
 
-Testien rivikattavuus on tällä hetkellä 71 prosenttia ja haaraumakatavuus 77 prosenttia.
+Testien rivikattavuus on tällä hetkellä 95 prosenttia ja haaraumakatavuus 89 prosenttia.
