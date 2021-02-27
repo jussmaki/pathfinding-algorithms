@@ -33,4 +33,16 @@ public class PathFinderTest {
         assertTrue(path.size() > 0);        
     }
     
+    @Test
+    public void PathFinderFindsRouteJPS() {
+        PathFinder pathFinder = new PathFinder();
+        try {
+            pathFinder.openMapFile("src/test/java/pathfinding/file/test.map");
+        } catch (Exception ex) {
+            fail(ex.toString());
+        }
+        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchJPS(0, 4, 9, 2).getPath());
+        assertTrue(path.size() > 0);        
+    }    
+    
 }
