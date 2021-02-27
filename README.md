@@ -2,7 +2,9 @@
 
 Tietorakenteet ja algoritmit harjoitustyö
 
-![](https://github.com/jussmaki/pathfinding-algorithms/workflows/Java%20CI%20with%20Gradle/badge.svg)
+[![Java CI with Gradle](https://github.com/jussmaki/pathfinding-algorithms/workflows/Java%20CI%20with%20Gradle/badge.svg)](https://github.com/jussmaki/pathfinding-algorithms/actions/workflows/gradle.yml)
+
+[![codecov](https://codecov.io/gh/jussmaki/pathfinding-algorithms/branch/main/graph/badge.svg?token=R8DBV97Z3R)](https://codecov.io/gh/jussmaki/pathfinding-algorithms)
 
 ### Dokumentaatio
 
