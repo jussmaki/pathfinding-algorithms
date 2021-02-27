@@ -1,7 +1,7 @@
 package pathfinding.file;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.fail;
+//import static org.junit.Assert.assertArrayEquals;
+//import static org.junit.Assert.fail;
 import org.junit.Test;
 
 public class MapReaderTest {
@@ -31,5 +31,5 @@ public class MapReaderTest {
                                 {0, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                                 {1, 1, 1, 1, 1, 1, 1, 1, 1, 1}};
         assertArrayEquals(expectedGrid, grid);
-    */}
+    */ }
 }

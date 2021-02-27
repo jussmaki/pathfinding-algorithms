@@ -3,8 +3,9 @@ package pathfinding.struct;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import pathfinding.domain.Node;
 import pathfinding.domain.Point;
 
@@ -21,8 +22,8 @@ public class MinHeapTest {
         MinHeap ownHeap = new MinHeap();
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
-        for (int i=0; i < 1000000; i++) {
-            Node n = new Node(r.nextInt(1024+1), r.nextInt(1024+1), r.nextDouble()+r.nextInt(Integer.MAX_VALUE));
+        for (int i = 0; i < 1000000; i++) {
+            Node n = new Node(r.nextInt(1024 + 1), r.nextInt(1024 + 1), r.nextDouble() + r.nextInt(Integer.MAX_VALUE));
             ownHeap.add(n);
             javaHeap.add(n);
         }
@@ -34,7 +35,7 @@ public class MinHeapTest {
     @Test
     public void heapWorksDistance2() {
         MinHeap ownHeap = new MinHeap();
-        PriorityQueue<Node> javaHeap = new PriorityQueue<>(new Comparator<Node> () {
+        PriorityQueue<Node> javaHeap = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node n1, Node n2) {
                 double diff = n1.getDistance() - n2.getDistance();
@@ -48,8 +49,8 @@ public class MinHeapTest {
             }
         });
         Random r = new Random();
-        for (int i=0; i < 1000000; i++) {
-            Node n = new Node(r.nextInt(1024+1), r.nextInt(1024+1), r.nextDouble()+r.nextInt(Integer.MAX_VALUE));
+        for (int i = 0; i < 1000000; i++) {
+            Node n = new Node(r.nextInt(1024 + 1), r.nextInt(1024 + 1), r.nextDouble() + r.nextInt(Integer.MAX_VALUE));
             ownHeap.add(n);
             javaHeap.add(n);
         }
@@ -63,7 +64,7 @@ public class MinHeapTest {
         MinHeap ownHeap = new MinHeap();
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
-        for (int i=0; i < 1000000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             int locationX = r.nextInt(1024);
             int locationY = r.nextInt(1024);
             double distance = r.nextDouble() + r.nextInt(1000);
@@ -85,8 +86,9 @@ public class MinHeapTest {
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
         Point endPoint = new Point(r.nextInt(1024), r.nextInt(1024));
-        for (int i=0; i < 1000000; i++) {
-            Node n = new Node(r.nextInt(1024+1), r.nextInt(1024+1), r.nextDouble()+r.nextInt(Integer.MAX_VALUE), endPoint);
+        for (int i = 0; i < 1000000; i++) {
+            Node n = new Node(r.nextInt(1024 + 1), r.nextInt(1024 + 1),
+                    r.nextDouble() + r.nextInt(Integer.MAX_VALUE), endPoint);
             ownHeap.add(n);
             javaHeap.add(n);
         }
@@ -100,15 +102,15 @@ public class MinHeapTest {
         MinHeap ownHeap = new MinHeap();
         Random r = new Random();
         Point endPoint = new Point(r.nextInt(1024), r.nextInt(1024));
-        PriorityQueue<Node> javaHeap = new PriorityQueue<>(new Comparator<Node> () {
+        PriorityQueue<Node> javaHeap = new PriorityQueue<>(new Comparator<Node>() {
             @Override
             public int compare(Node n1, Node n2) {
                 double heur = heuristics(n1) - heuristics(n2);
                 double diff = n1.getDistance() - n2.getDistance();
-                if (heur+diff > 0) {
+                if (heur + diff > 0) {
                     return 1;
                 }
-                if (heur+diff < 0) {
+                if (heur + diff < 0) {
                     return -1;
                 }
                 return 0;
@@ -118,11 +120,13 @@ public class MinHeapTest {
                 int startPointY = n.getLocationY();
                 int endPointX = endPoint.getLocationX();
                 int endPointY = endPoint.getLocationY();
-                return Math.sqrt((endPointY - startPointY) * (endPointY - startPointY) + (endPointX - startPointX) * (endPointX - startPointX));
+                return Math.sqrt((endPointY - startPointY) * (endPointY - startPointY)
+                        + (endPointX - startPointX) * (endPointX - startPointX));
             }
         });
-        for (int i=0; i < 1000000; i++) {
-            Node n = new Node(r.nextInt(1024+1), r.nextInt(1024+1), r.nextDouble()+r.nextInt(Integer.MAX_VALUE), endPoint);
+        for (int i = 0; i < 1000000; i++) {
+            Node n = new Node(r.nextInt(1024 + 1), r.nextInt(1024 + 1),
+                    r.nextDouble() + r.nextInt(Integer.MAX_VALUE), endPoint);
             ownHeap.add(n);
             javaHeap.add(n);
         }
@@ -137,7 +141,7 @@ public class MinHeapTest {
         PriorityQueue<Node> javaHeap = new PriorityQueue<>(Node::compare);
         Random r = new Random();
         Point endPoint = new Point(r.nextInt(1024), r.nextInt(1024));
-        for (int i=0; i < 1000000; i++) {
+        for (int i = 0; i < 1000000; i++) {
             int locationX = r.nextInt(1024);
             int locationY = r.nextInt(1024);
             double distance = r.nextDouble() + r.nextInt(1000);

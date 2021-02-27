@@ -25,7 +25,7 @@ public class PointStackTest {
     
     @Test
     public void isNotEmptyReturnsEmptyWhenIsNotEmpty() {
-        ps.push(new Point(1,1));
+        ps.push(new Point(1, 1));
         assertFalse(ps.isEmpty());
     }    
   
@@ -36,7 +36,7 @@ public class PointStackTest {
     
     @Test
     public void sizeReturns1WhenContainsOnePoint() {
-        ps.push(new Point(1,1));
+        ps.push(new Point(1, 1));
         assertEquals(1, ps.size());
     }
     
@@ -56,7 +56,7 @@ public class PointStackTest {
             javaDeque.addLast(p);
             ps.push(p);
         }
-        while(!javaDeque.isEmpty()) {
+        while (!javaDeque.isEmpty()) {
             assertEquals(javaDeque.removeLast(), ps.pop());
         }
         assertTrue(ps.isEmpty());
@@ -74,7 +74,7 @@ public class PointStackTest {
                 assertEquals(javaDeque.removeLast(), ps.pop());
             }
         }
-        while(!javaDeque.isEmpty()) {
+        while (!javaDeque.isEmpty()) {
             assertEquals(javaDeque.removeLast(), ps.pop());
         }
         assertTrue(ps.isEmpty());
