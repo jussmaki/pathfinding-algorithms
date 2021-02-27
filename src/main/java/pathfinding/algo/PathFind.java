@@ -12,31 +12,14 @@ class PathFind {
      * @param y y-coordinate
      * @return neighbour coordinate points as PointStack-object
      */
-    public static PointStack getNeighbourCells(int[][] grid, int x, int y) {
+    public static PointStack getNeighbourCells(int[][] grid, int fromX, int fromY) {
         PointStack neighbours = new PointStack();
-        if (canGoFromTo(grid, x, y, x - 1, y)) {
-            neighbours.push(new Point(x - 1, y));
-        }
-        if (canGoFromTo(grid, x, y, x - 1, y - 1)) {
-            neighbours.push(new Point(x - 1, y - 1));
-        }
-        if (canGoFromTo(grid, x, y, x + 1, y)) {
-            neighbours.push(new Point(x + 1, y));
-        }
-        if (canGoFromTo(grid, x, y, x, y + 1)) {
-            neighbours.push(new Point(x, y + 1));
-        }
-        if (canGoFromTo(grid, x, y, x, y - 1)) {
-            neighbours.push(new Point(x, y - 1));
-        }
-        if (canGoFromTo(grid, x, y, x - 1, y + 1)) {
-            neighbours.push(new Point(x - 1, y + 1));
-        }
-        if (canGoFromTo(grid, x, y, x + 1, y - 1)) {
-            neighbours.push(new Point(x + 1, y - 1));
-        }
-        if (canGoFromTo(grid, x, y, x + 1, y + 1)) {
-            neighbours.push(new Point(x + 1, y + 1));
+        for (int x = -1; x <= 1; x++) {
+            for (int y = -1; y <= 1; y++) {
+                if (canGoFromTo(grid, fromX, fromY, fromX + x, fromY + y)) {
+                    neighbours.push(new Point(fromX + x, fromY + y));
+                }
+            }
         }
         return neighbours;
     }
