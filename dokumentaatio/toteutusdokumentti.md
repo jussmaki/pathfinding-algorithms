@@ -14,7 +14,7 @@ Ohjelman rakenne on tällä hetkellä seuraava:
 │   ├── JPS.java
 │   └── PathFind.java
 ├── domain
-│   ├── ANode.java
+│   ├── Node.java
 │   ├── Point.java
 │   └── Result.java
 ├── file
@@ -24,7 +24,7 @@ Ohjelman rakenne on tällä hetkellä seuraava:
 ├── pathfinder
 │   └── PathFinder.java
 ├── struct
-│   ├── ArrayList.java
+│   ├── PointStack.java
 │   └── MinHeap.java
 └── ui
     └── UI.java
