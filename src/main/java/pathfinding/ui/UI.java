@@ -23,7 +23,7 @@ import pathfinding.struct.PointStack;
 
 public class UI extends Application {
 
-    Result result;
+    ArrayList<Result> results;
     PathFinder pathFinder = new PathFinder();    
     int startX = -1;
     int startY = -1;
@@ -88,16 +88,25 @@ public class UI extends Application {
         });
         
         searchDjikstraButton.setOnAction((event) -> {
-            result = pathFinder.searchDjikstra(startX, startY, endX, endY);
-            printResults();
+            results = new ArrayList<>();
+            for (int i = 0; i < 1000; i++) {
+                results.add(pathFinder.searchDjikstra(startX, startY, endX, endY));
+            }
+            printResults("Djikstra");
+            Result result = results.get(0);
+            System.out.println(result);
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
                     pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
                     convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
-            result = pathFinder.searchAStar(startX, startY, endX, endY);
-            printResults();
+            results = new ArrayList<>();
+            for (int i = 0; i < 1000; i++) {
+                results.add(pathFinder.searchDjikstra(startX, startY, endX, endY));
+            }
+            printResults("AStar");
+            Result result = results.get(0);
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
                     pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
                     convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
@@ -113,8 +122,25 @@ public class UI extends Application {
         return ret;
     }
     
-    private void printResults() {
-        System.out.println(this.result);
+    private void printResults(String algorithm) {
+        System.out.println(algorithm);
+        long all = 0;
+        long min = Long.MAX_VALUE;
+        long max = Long.MIN_VALUE;
+        for (Result r : results) {
+            all += r.getRunTime();
+            if (min > r.getRunTime()) {
+                min = r.getRunTime();
+            }
+            if (max < r.getRunTime()) {
+                max = r.getRunTime();
+            }
+        }
+        long avg = all/1000;
+        System.out.println("min runtime: " + min / 1e9 + " s.");
+        System.out.println("max runtime: " + max / 1e9 + " s.");
+        System.out.println("avg runtime: " + avg / 1e9 + " s.");
+        System.out.println(results.get(0));
     }
     
     /**

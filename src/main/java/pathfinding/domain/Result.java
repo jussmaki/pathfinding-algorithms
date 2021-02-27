@@ -14,7 +14,7 @@ public class Result {
      *
      * @return
      */
-    public double getRunTime() {
+    public long getRunTime() {
         return runTime;
     }
 
@@ -112,7 +112,9 @@ public class Result {
      */
     @Override
     public String toString() {
-        return "runtime: " + (this.runTime / 1e9) + " s, distance: " + this.getDistance()
+        //return "runtime: " + (this.runTime / 1e9) + " s, distance: " + this.getDistance()
+        //        + " nodes in path: " + this.getNoNodesInPath() + " visited nodes: " + this.getVisitedNoNodes();
+        return "distance: " + this.getDistance()
                 + " nodes in path: " + this.getNoNodesInPath() + " visited nodes: " + this.getVisitedNoNodes();
     }
     

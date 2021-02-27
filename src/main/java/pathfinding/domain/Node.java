@@ -107,8 +107,6 @@ public class Node {
      * @param obj
      * @return
      */
-
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
