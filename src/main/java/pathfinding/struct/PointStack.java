@@ -10,7 +10,7 @@ public class PointStack {
     private int last;
     
     /**
-     *
+     * Creates new PointStac object with custom size
      * @param heapSize
      */
     public PointStack(int heapSize) {
@@ -19,16 +19,50 @@ public class PointStack {
         last = 0;
     }
     
+    /**
+     * Creates new PointStack object with default size
+     */
     public PointStack() {
         this(DEFAULT_SIZE);
     }
 
+    /**
+     * Insert node in stack
+     */
     public void push(Point p) {       
         if (last >= arrSize) {
             expandArray();
         }
         arr[last] = p;
         last++; 
+    }
+    
+    /**
+     * Remove node from stack
+     * @return top node of stack
+     */    
+    public Point pop() {
+        last--;        
+        Point p = arr[last];
+        return p;
+    }
+    /**
+     * Size of stack
+     * @return number of points in stack
+     */
+    public int size() {
+        return last;
+    }
+    
+    /**
+     *  Founds out if stack is empty or not
+     * @return true/false
+     */
+    public boolean isEmpty() {
+        if (last > 0) {
+            return false;
+        }
+        return true;
     }
     
     private void expandArray() {
@@ -39,24 +73,5 @@ public class PointStack {
         }
         arr = newArr;
     }
-
-    public boolean isEmpty() {
-        if (last > 0) {
-            return false;
-        }
-        return true;
-    }
     
-    public Point pop() {
-        last--;        
-        Point p = arr[last];
-        return p;
-    }
-    /**
-     *
-     * @return
-     */
-    public int size() {
-        return last;
-    }
 }

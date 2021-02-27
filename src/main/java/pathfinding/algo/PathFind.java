@@ -6,11 +6,11 @@ import pathfinding.struct.PointStack;
 
 class PathFind {
      /**
-     *
+     * Finds out neighbour cells of coordinate
      * @param grid 2d array of map
      * @param x x-coordinate
      * @param y y-coordinate
-     * @return neighbour coordinate points as ArrayList
+     * @return neighbour coordinate points as PointStack-object
      */
     public static PointStack getNeighbourCells(int[][] grid, int x, int y) {
         PointStack neighbours = new PointStack();
@@ -41,25 +41,8 @@ class PathFind {
         return neighbours;
     }
     
-
-    private static boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
-        if (x1 == x2 && y1 == y2) {
-            return false;
-        }
-        if (grid[x1][y1] != 1) {
-            return false;
-        }
-        if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
-            return false;
-        }
-        if (grid[x2][y2] != 1) {
-            return false;
-        }
-        return true;
-    }
-    
      /**
-     *
+     * Euclidean distance of two points
      * @param fromX from x-coordinate
      * @param fromY from y-coordinate
      * @param toX to x-coordinate
@@ -71,13 +54,13 @@ class PathFind {
     }
     
      /**
-     *
+     * Forms path
      * @param previous array of previous points
      * @param startX start x-coordinate
      * @param startY start y-coordinate
      * @param endX end x-coordinate
      * @param endY end y-coordinate
-     * @return path as points in arraylist
+     * @return path as points in PointStack-object
      */
     public static PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
         PointStack path = new PointStack(1024);
@@ -96,11 +79,32 @@ class PathFind {
         return path;
     }
     
+     /**
+     * Insert Points in heap to PointStack 
+     * @param heap MinHeap-object
+     * @return points in heap as PointStack-object
+     */
     public static PointStack heapToPoints(MinHeap heap) {
         PointStack ret = new PointStack(1024);
         while (!heap.isEmpty()) {
             ret.push(heap.poll().getLocation());
         }
         return ret;
+    }
+    
+    private static boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
+        if (x1 == x2 && y1 == y2) {
+            return false;
+        }
+        if (grid[x1][y1] != 1) {
+            return false;
+        }
+        if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
+            return false;
+        }
+        if (grid[x2][y2] != 1) {
+            return false;
+        }
+        return true;
     }
 }

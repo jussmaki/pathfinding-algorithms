@@ -9,7 +9,7 @@ import pathfinding.struct.PointStack;
 public class AStar extends PathFind {
 
     /**
-     *
+     * Search with AStar
      * @param arr 2d array of map
      * @param startX start point x-coordinate
      * @param startY start point y-coordinate

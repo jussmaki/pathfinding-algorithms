@@ -8,7 +8,7 @@ public class Node {
     Point endPoint;
 
     /**
-     *
+     * Creates new Node-object
      * @param locationX
      * @param locationY
      * @param distance
@@ -19,7 +19,7 @@ public class Node {
     }
     
     /**
-     *
+     * Creates new Node and sets end point
      * @param locationX
      * @param locationY
      * @param distance
@@ -31,9 +31,9 @@ public class Node {
     }
 
     /**
-     *
-     * @param n
-     * @return
+     * Compare nodes
+     * @param n node to compare to
+     * @return 1/0/-1
      */
     public int compare(Node n) {
         if (endPoint == null) {

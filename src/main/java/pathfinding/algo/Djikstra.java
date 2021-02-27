@@ -9,7 +9,7 @@ import pathfinding.struct.PointStack;
 public class Djikstra extends PathFind {
 
     /**
-     *
+     * Search with Djikstra
      * @param arr 2d array of map
      * @param startX start point x-coordinate
      * @param startY start point y-coordinate

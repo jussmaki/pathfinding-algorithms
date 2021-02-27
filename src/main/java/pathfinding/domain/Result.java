@@ -99,7 +99,7 @@ public class Result {
     }
     
     /**
-     *
+     * Returns number of nodes in path
      * @return number of nodes in path
      */
     public int getNoNodesInPath() {

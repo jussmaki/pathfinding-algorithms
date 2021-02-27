@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class MapReader {
    
     /**
-     *
+     * Read .map-file
      * @param fileName
      * @return graph as array object, 1=passable, 0=not passable
      * @throws FileNotFoundException

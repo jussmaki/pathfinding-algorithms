@@ -9,7 +9,7 @@ public class MinHeap {
     private int last;
     
     /**
-     *
+     * Creates new MinHeap-object
      */
     public MinHeap() {
         arrSize = 1024;
@@ -18,7 +18,7 @@ public class MinHeap {
     }
 
     /**
-     *
+     * Insert node in heap
      * @param node node to add in heap
      */
     public void add(Node node) {
@@ -35,7 +35,7 @@ public class MinHeap {
     }
     
     /**
-     *
+     * Poll node from heap
      * @return smallest node in heap
      */
     public Node poll() {
@@ -47,8 +47,8 @@ public class MinHeap {
     }
     
     /**
-     *
-     * @return
+     *  Founds out if heap is empty or not
+     * @return true/false
      */
     public boolean isEmpty() {
         //System.out.println(this + " last: " + last);

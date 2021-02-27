@@ -4,7 +4,7 @@ public class Point {
     private int locationX, locationY;
     
     /**
-     *
+     * Creates new Point-object
      * @param locationX
      * @param locationY
      */

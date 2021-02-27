@@ -8,7 +8,7 @@ import pathfinding.struct.PointStack;
 
 public class JPS extends PathFind {
     /**
-     *
+     * Search with JPS
      * @param arr 2d array of map
      * @param startX start point x-coordinate
      * @param startY start point y-coordinate

@@ -7,11 +7,10 @@ import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
 
 public class PathFinder {
-    //class for interacting with gui
     private int[][] grid;
 
     /**
-     *
+     * Open .map-file
      * @param fileName
      * @throws Exception
      */
@@ -28,7 +27,7 @@ public class PathFinder {
     }
 
     /**
-     *
+     * Start search with Djikstra
      * @param startX
      * @param startY
      * @param endX
@@ -40,7 +39,7 @@ public class PathFinder {
     }
     
     /**
-     *
+     * Start search with AStar
      * @param startX
      * @param startY
      * @param endX
@@ -52,7 +51,7 @@ public class PathFinder {
     }
     
     /**
-     *
+     * Start search with JPS
      * @param startX
      * @param startY
      * @param endX
