@@ -1,0 +1,5 @@
+/**
+ * Algorithms
+ */
+
+package pathfinding.algo;
