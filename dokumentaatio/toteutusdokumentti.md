@@ -4,18 +4,17 @@ Tämä dokumentti on vielä vaiheessa. Sen sisältö tulee vielä päivittymää
 
 ## Ohjelman yleisrakenne
 
-Ohjelma on jaeuttu eri pakkauksiin, joilla erilaisia vastuita.
+Ohjelma on jaeuttu eri pakkauksiin, joilla erilaisia vastuita. Ohjelman algoritmit ja tietorakenteet on toteutettu itse.
 
 Ohjelman rakenne on tällä hetkellä seuraava:
 ```bash
 ├── algo
-    ├── AStar.java
+│   ├── AStar.java
 │   ├── Djikstra.java
+│   ├── JPS.java
 │   └── PathFind.java
 ├── domain
 │   ├── ANode.java
-│   ├── DNode.java
-│   ├── Node.java
 │   ├── Point.java
 │   └── Result.java
 ├── file
@@ -35,19 +34,29 @@ Ohjelman käyttöliittymä ja logiikka on eriytetty mahdollisimman paljon toisis
 
 ## Saavutetut aika- ja tilavaativuudet
 
-Ei ajankohtainen.
+Ei ajankohtainen
 
 ## Suorituskyky- ja O-analyysivertailu
 
 ```bash
-Djikstra - runtime: 0.105976779 s, distance: 179.33809511662415 nodes in path: 153 visited nodes: 41119
-AStar - runtime: 0.026113823 s, distance: 179.33809511662415 nodes in path: 153 visited nodes: 7100
+Djikstra
+min runtime: 0.021032497 s.
+max runtime: 0.119102841 s.
+avg runtime: 0.023639793 s.
+distance: 359.2274887854705 nodes in path: 272 visited nodes: 70198
+distance: 359.2274887854705 nodes in path: 272 visited nodes: 70198
+AStar
+min runtime: 0.021525539 s.
+max runtime: 0.049351457 s.
+avg runtime: 0.023114085 s.
+distance: 359.2274887854705 nodes in path: 272 visited nodes: 70198
+
 ```
 Algoritmien suorituskykytestaus on aloitettu.
 
 ## Työn mahdolliset puutteet ja parannusehdotukset
 
-Työ on vielä kesken. Tällä hetkellä algoritmejä pitää vielä korjata ja omia tietorakenteita totetuttaa niille lisää. Käyttöliittymä kaipaa vielä hiomista algoritmien tietojen näyttämisen osalta. Käyttöliittymää parannan enemmänkin jos jää aikaa.
+Käyttöliittymä kaipaa vielä hiomista algoritmien tietojen näyttämisen osalta. Käyttöliittymää parannan enemmänkin jos jää aikaa.
  
 ## Lähteet
 
