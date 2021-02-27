@@ -2,6 +2,8 @@
 
 Tietorakenteet ja algoritmit harjoitustyö
 
+![](https://github.com/jussmaki/pathfinding-algorithms/workflows/Java%20CI%20with%20Gradle/badge.svg)
+
 ### Dokumentaatio
 
 [Määrittelydokumentti](dokumentaatio/maarittelydokumentti.md)
