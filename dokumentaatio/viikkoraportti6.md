@@ -1,4 +1,4 @@
-### Viikko 5
+### Viikko 6
 
 Tällä viikolla käytin työhön yhteensä 20 tuntia.
 
