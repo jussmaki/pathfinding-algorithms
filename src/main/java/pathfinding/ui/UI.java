@@ -136,7 +136,7 @@ public class UI extends Application {
                 max = r.getRunTime();
             }
         }
-        long avg = all/1000;
+        long avg = all / 1000;
         System.out.println("min runtime: " + min / 1e9 + " s.");
         System.out.println("max runtime: " + max / 1e9 + " s.");
         System.out.println("avg runtime: " + avg / 1e9 + " s.");
