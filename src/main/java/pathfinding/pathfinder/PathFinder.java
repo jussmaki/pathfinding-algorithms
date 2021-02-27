@@ -2,6 +2,7 @@ package pathfinding.pathfinder;
 
 import pathfinding.algo.AStar;
 import pathfinding.algo.Djikstra;
+import pathfinding.algo.JPS;
 import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
 
@@ -9,26 +10,13 @@ public class PathFinder {
     //class for interacting with gui
     private int[][] grid;
 
-    private MapReader mapReader;
-    private Djikstra djikstra;
-    private AStar aStar;
-
-    /**
-     *
-     */
-    public PathFinder() {
-        mapReader = new MapReader();
-        djikstra = new Djikstra();
-        aStar = new AStar();
-    }
-    
     /**
      *
      * @param fileName
      * @throws Exception
      */
     public void openMapFile(String fileName) throws Exception {
-        this.grid = mapReader.readMap(fileName);
+        this.grid = MapReader.readMap(fileName);
     }
     
     /**
@@ -48,7 +36,7 @@ public class PathFinder {
      * @return result object
      */
     public Result searchDjikstra(int startX, int startY, int endX, int endY) {
-        return djikstra.search(this.getGrid(), startX, startY, endX, endY);
+        return Djikstra.search(this.getGrid(), startX, startY, endX, endY);
     }
     
     /**
@@ -60,7 +48,19 @@ public class PathFinder {
      * @return result object
      */
     public Result searchAStar(int startX, int startY, int endX, int endY) {
-        return aStar.search(this.getGrid(), startX, startY, endX, endY);
+        return AStar.search(this.getGrid(), startX, startY, endX, endY);
     }
+    
+    /**
+     *
+     * @param startX
+     * @param startY
+     * @param endX
+     * @param endY
+     * @return result object
+     */
+    public Result searchJPS(int startX, int startY, int endX, int endY) {
+        return JPS.search(this.getGrid(), startX, startY, endX, endY);
+    }    
 
 }

@@ -4,7 +4,7 @@ import pathfinding.domain.Point;
 
 public class PointStack {
 
-    private static int DEFAULT_SIZE = 8;
+    private static final int DEFAULT_SIZE = 8;
     private int arrSize;
     private Point[] arr;
     private int last;

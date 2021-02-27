@@ -17,7 +17,7 @@ public class AStar extends PathFind {
      * @param endY end point x-coordinate
      * @return results as result object
      */
-    public Result search(int[][] arr, int startX, int startY, int endX, int endY) {
+    public static Result search(int[][] arr, int startX, int startY, int endX, int endY) {
 
         final double DEFAULT_DIST = Double.MAX_VALUE;
         

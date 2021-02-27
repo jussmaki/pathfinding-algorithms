@@ -12,7 +12,7 @@ class PathFind {
      * @param y y-coordinate
      * @return neighbour coordinate points as ArrayList
      */
-    public PointStack getNeighbourCells(int[][] grid, int x, int y) {
+    public static PointStack getNeighbourCells(int[][] grid, int x, int y) {
         PointStack neighbours = new PointStack();
         if (canGoFromTo(grid, x, y, x - 1, y)) {
             neighbours.push(new Point(x - 1, y));
@@ -42,7 +42,7 @@ class PathFind {
     }
     
 
-    private boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
+    private static boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
         if (x1 == x2 && y1 == y2) {
             return false;
         }
@@ -66,7 +66,7 @@ class PathFind {
      * @param toY to y-coordinate
      * @return euclidean distance of two points
      */
-    public double getBirdsWayDistance(int fromX, int fromY, int toX, int toY) {
+    public static double getBirdsWayDistance(int fromX, int fromY, int toX, int toY) {
         return Math.sqrt((toY - fromY) * (toY - fromY) + (toX - fromX) * (toX - fromX));
     }
     
@@ -79,7 +79,7 @@ class PathFind {
      * @param endY end y-coordinate
      * @return path as points in arraylist
      */
-    public PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
+    public static PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
         PointStack path = new PointStack(1024);
         if (previous[endX][endY] == null) {
             return path; //unreachable
@@ -96,7 +96,7 @@ class PathFind {
         return path;
     }
     
-    public PointStack heapToPoints(MinHeap heap) {
+    public static PointStack heapToPoints(MinHeap heap) {
         PointStack ret = new PointStack(1024);
         while (!heap.isEmpty()) {
             ret.push(heap.poll().getLocation());

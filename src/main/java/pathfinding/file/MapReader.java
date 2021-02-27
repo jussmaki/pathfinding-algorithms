@@ -6,17 +6,13 @@ import java.util.Scanner;
 
 public class MapReader {
    
-    public MapReader() {
-
-    }
-
     /**
      *
      * @param fileName
      * @return graph as array object, 1=passable, 0=not passable
      * @throws FileNotFoundException
      */
-    public int[][] readMap(String fileName) throws FileNotFoundException {
+    public static int[][] readMap(String fileName) throws FileNotFoundException {
         Scanner s = new Scanner(new File(fileName));
         if (!s.hasNextLine() || !s.nextLine().equals("type octile")) {
             throw new IllegalArgumentException();

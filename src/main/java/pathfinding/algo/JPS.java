@@ -6,8 +6,7 @@ import pathfinding.domain.Result;
 import pathfinding.struct.MinHeap;
 import pathfinding.struct.PointStack;
 
-public class Djikstra extends PathFind {
-
+public class JPS extends PathFind {
     /**
      *
      * @param arr 2d array of map
@@ -18,9 +17,14 @@ public class Djikstra extends PathFind {
      * @return results as result object
      */
     public static Result search(int[][] arr, int startX, int startY, int endX, int endY) {
+
         final double DEFAULT_DIST = Double.MAX_VALUE;
+        
+        Point endPoint = new Point(endX, endY);
+        
         int visitedNodes = 0;
         long startTime = System.nanoTime();
+        
         Point[][] previous = new Point[arr.length][arr[0].length];
         boolean[][] visited = new boolean[arr.length][arr[0].length];
         double[][] dist = new double[arr.length][arr[0].length];
@@ -33,7 +37,7 @@ public class Djikstra extends PathFind {
         
         MinHeap heap = new MinHeap();
         
-        heap.add(new Node(startX, startY, 0));
+        heap.add(new Node(startX, startY, 0, endPoint));
         
         while (!heap.isEmpty()) {
             Node node = heap.poll();
@@ -45,11 +49,10 @@ public class Djikstra extends PathFind {
             //stop if we have found the goal node
             if (node.getLocationX() == endX && node.getLocationY() == endY) {
                 break;
-            }      
+            }            
             
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
-
             PointStack ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
             while (!ps.isEmpty()) {
                 Point neighbour = ps.pop();
@@ -60,21 +63,20 @@ public class Djikstra extends PathFind {
                     dist[neighbour.getLocationX()][neighbour.getLocationY()] = newDist;
                     previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(
                             node.getLocationX(), node.getLocationY());
-                    heap.add(new Node(neighbour.getLocationX(), neighbour.getLocationY(), newDist));
+                    heap.add(new Node(neighbour.getLocationX(), neighbour.getLocationY(), newDist, endPoint));
                 }
-            }
+            }            
         }
         
         long endTime = System.nanoTime();
+        
         Result res = new Result();
         res.setDistance(dist[endX][endY]);
         res.setPath(path(previous, startX, startY, endX, endY));
         res.setRunTime(endTime - startTime);
-        res.setVisited(visited);        
-        res.setVisitedNoNodes(visitedNodes);
+        res.setVisited(visited);
         res.setPointsInHeap(heapToPoints(heap));
         res.setVisitedNoNodes(visitedNodes);
         return res;
     }
-
 }

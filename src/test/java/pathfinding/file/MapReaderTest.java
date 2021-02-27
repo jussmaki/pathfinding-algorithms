@@ -7,10 +7,9 @@ import org.junit.Test;
 public class MapReaderTest {
     @Test
     public void mapReaderParsesMapCorrectly() {
-    /*    MapReader mapReader = new MapReader();
-        int[][] grid = null;
+        /*int[][] grid = null;
         try {
-            grid = mapReader.readMap("src/test/java/pathfinding/file/test.map");
+            grid = MmapReader.readMap("src/test/java/pathfinding/file/test.map");
         } catch (Exception ex) {
             fail(ex.toString());
         }
