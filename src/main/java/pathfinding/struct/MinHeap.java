@@ -14,7 +14,6 @@ public class MinHeap {
     public MinHeap() {
         arrSize = 1024;
         heap = new Node[arrSize];
-        //heap[0] = null;
         last = 0;
     }
 
@@ -35,10 +34,6 @@ public class MinHeap {
         }
     }
     
-    /*public Node min() {
-        return heap[1];
-    }*/
-
     /**
      *
      * @return smallest node in heap

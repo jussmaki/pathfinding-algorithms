@@ -70,7 +70,8 @@ public class Node {
         int startPointY = this.getLocationY();
         int endPointX = endPoint.getLocationX();
         int endPointY = endPoint.getLocationY();
-        return Math.sqrt((endPointY - startPointY) * (endPointY - startPointY) + (endPointX - startPointX) * (endPointX - startPointX));
+        return Math.sqrt((endPointY - startPointY) * (endPointY - startPointY)
+                + (endPointX - startPointX) * (endPointX - startPointX));
     }
     
     /**

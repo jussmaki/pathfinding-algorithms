@@ -87,12 +87,9 @@ class PathFind {
         Point p = new Point(endX, endY);
         path.push(p);
         while (true) {
-            //Point previousPoint = p;
             p = previous[p.getLocationX()][p.getLocationY()];
-            //p.setPreviousPoint(previousPoint);
             path.push(p);
-            //System.out.println(p);
-            if (p.getLocationX() == startX && p.getLocationY() == startY) { //  equals(new Point(startX, startY))) {
+            if (p.getLocationX() == startX && p.getLocationY() == startY) {
                 break;
             }
         }

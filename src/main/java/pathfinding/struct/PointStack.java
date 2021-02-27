@@ -59,13 +59,4 @@ public class PointStack {
     public int size() {
         return last;
     }
-    
-    /*public Object[] toArray() {
-        Point[] ret = new Point[last];
-        for (int i=0; i < ret.length; i++) {
-            ret[i] = arr[i];
-        }
-        return ret;
-    }*/
-    
 }

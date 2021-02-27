@@ -30,7 +30,6 @@ public class UI extends Application {
     int endX = -1;
     int endY = -1;
     boolean startPointSelected = false;    
-    //boolean endPointSelected = false;
     
     @Override
     public void start(Stage primaryStage) {
@@ -69,7 +68,6 @@ public class UI extends Application {
             }
             imageView.setImage(SwingFXUtils.toFXImage(drawMaze(pathFinder.getGrid()), null));
             startPointSelected = false;
-            //endPointSelected = false;
             infoLabel.setText("Click start point with mouse");
         });
 
@@ -80,12 +78,10 @@ public class UI extends Application {
                 startY = (int) event.getY();
                 infoLabel.setText("Click end point with mouse");
                 startPointSelected = true;
-            //} else if (!endPointSelected) {
             } else {
                 endX = (int) event.getX();
                 endY = (int) event.getY();
                 infoLabel.setText("Ready to search path!");
-                //endPointSelected = true;
                 searchDjikstraButton.setDisable(false);
                 searchAStarButton.setDisable(false);
             }
@@ -94,13 +90,17 @@ public class UI extends Application {
         searchDjikstraButton.setOnAction((event) -> {
             result = pathFinder.searchDjikstra(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
+                    pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
+                    convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             result = pathFinder.searchAStar(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
+                    pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
+                    convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
 
     }
@@ -134,7 +134,6 @@ public class UI extends Application {
                 }
             }
         }
-        //bufferedImage.getScaledInstance(endX, endX, endX)
         return bufferedImage;
     }
 
@@ -144,7 +143,8 @@ public class UI extends Application {
      * @param route
      * @return grid as BufferedImage
      */
-    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, ArrayList<Point> pointsInHeap, boolean[][] visited, int rgb) {
+    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, ArrayList<Point> pointsInHeap,
+            boolean[][] visited, int rgb) {
         BufferedImage bufferedImage = drawMaze(maze);
         drawVisitedNodesInMaze(bufferedImage, visited);
         drawPointsInHeapInMaze(bufferedImage, pointsInHeap);

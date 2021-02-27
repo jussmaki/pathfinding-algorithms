@@ -25,6 +25,7 @@ public class AStar extends PathFind {
         
         int visitedNodes = 0;
         long startTime = System.nanoTime();
+        
         Point[][] previous = new Point[arr.length][arr[0].length];
         boolean[][] visited = new boolean[arr.length][arr[0].length];
         double[][] dist = new double[arr.length][arr[0].length];
@@ -51,23 +52,25 @@ public class AStar extends PathFind {
                 break;
             }            
             
-            //System.out.println(node);
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
             PointStack ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
-            while(!ps.isEmpty()) {
+            while (!ps.isEmpty()) {
                 Point neighbour = ps.pop();
                 double curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
-                double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
+                double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(
+                        node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
                 if (newDist < curDist) {
-                    //System.out.println(newDist);
                     dist[neighbour.getLocationX()][neighbour.getLocationY()] = newDist;
-                    previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(node.getLocationX(), node.getLocationY());
+                    previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(
+                            node.getLocationX(), node.getLocationY());
                     heap.add(new Node(neighbour.getLocationX(), neighbour.getLocationY(), newDist, endPoint));
                 }
             }            
         }
+        
         long endTime = System.nanoTime();
+        
         Result res = new Result();
         res.setDistance(dist[endX][endY]);
         res.setPath(path(previous, startX, startY, endX, endY));

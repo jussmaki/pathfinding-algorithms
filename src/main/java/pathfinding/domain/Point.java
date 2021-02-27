@@ -2,7 +2,6 @@ package pathfinding.domain;
 
 public class Point {
     private int locationX, locationY;
-    //Point previousPoint;
     
     /**
      *
@@ -12,17 +11,7 @@ public class Point {
     public Point(int locationX, int locationY) {
         this.locationX = locationX;
         this.locationY = locationY;
-        //this.previousPoint = null;
     }
-
-    /*public Point(int endX, int endY, Point previousPoint) {
-        this(endX, endY);
-        this.previousPoint = previousPoint;
-    }*/
-
-    /*public void setPreviousPoint(Point previousPoint) {
-        this.previousPoint = previousPoint;
-    }*/
 
     /**
      *

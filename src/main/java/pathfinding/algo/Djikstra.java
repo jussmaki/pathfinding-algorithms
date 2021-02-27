@@ -31,9 +31,7 @@ public class Djikstra extends PathFind {
         }
         dist[startX][startY] = 0;
         
-        //PriorityQueue<DNode> heap = new PriorityQueue<>();
         MinHeap heap = new MinHeap();
-        
         
         heap.add(new Node(startX, startY, 0));
         
@@ -51,16 +49,17 @@ public class Djikstra extends PathFind {
             
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
-            //System.out.println(heap);
+
             PointStack ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
-            while(!ps.isEmpty()) {
+            while (!ps.isEmpty()) {
                 Point neighbour = ps.pop();
                 double curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];
-                double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
+                double newDist =  dist[node.getLocationX()][node.getLocationY()] + getBirdsWayDistance(
+                        node.getLocationX(), node.getLocationY(), neighbour.getLocationX(), neighbour.getLocationY());
                 if (newDist < curDist) {
-                    //System.out.println(newDist);
                     dist[neighbour.getLocationX()][neighbour.getLocationY()] = newDist;
-                    previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(node.getLocationX(), node.getLocationY());
+                    previous[neighbour.getLocationX()][neighbour.getLocationY()] = new Point(
+                            node.getLocationX(), node.getLocationY());
                     heap.add(new Node(neighbour.getLocationX(), neighbour.getLocationY(), newDist));
                 }
             }
