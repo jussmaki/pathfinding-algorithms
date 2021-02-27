@@ -94,13 +94,13 @@ public class UI extends Application {
         searchDjikstraButton.setOnAction((event) -> {
             result = pathFinder.searchDjikstra(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), result.getVisited(), 16711680), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             result = pathFinder.searchAStar(startX, startY, endX, endY);
             printResults();
-            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), result.getVisited(), Color.GREEN.getRGB()), null));
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(pathFinder.getGrid(), convertPSToArrayList(result.getPath()), convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
 
     }
@@ -144,9 +144,10 @@ public class UI extends Application {
      * @param route
      * @return grid as BufferedImage
      */
-    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, boolean[][] visited, int rgb) {
+    private BufferedImage drawRouteInMaze(int[][] maze, ArrayList<Point> route, ArrayList<Point> pointsInHeap, boolean[][] visited, int rgb) {
         BufferedImage bufferedImage = drawMaze(maze);
         drawVisitedNodesInMaze(bufferedImage, visited);
+        drawPointsInHeapInMaze(bufferedImage, pointsInHeap);
         for (Point p : route) {
             bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), rgb);
         }
@@ -165,8 +166,14 @@ public class UI extends Application {
         return bufferedImage;
     }
     
+    private void drawPointsInHeapInMaze(BufferedImage bufferedImage, ArrayList<Point> pointsInHeap) {
+        for (Point p : pointsInHeap) {
+            bufferedImage.setRGB(p.getLocationX(), p.getLocationY(), Color.YELLOW.getRGB());
+        }
+    }
+        
+    
     public static void main(String[] args) {
         launch(args);
     }
-        
 }

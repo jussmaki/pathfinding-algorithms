@@ -1,6 +1,7 @@
 package pathfinding.algo;
 
 import pathfinding.domain.Point;
+import pathfinding.struct.MinHeap;
 import pathfinding.struct.PointStack;
 
 class PathFind {
@@ -96,5 +97,13 @@ class PathFind {
             }
         }
         return path;
+    }
+    
+    public PointStack heapToPoints(MinHeap heap) {
+        PointStack ret = new PointStack();
+        while (!heap.isEmpty()) {
+            ret.push(heap.poll().getLocation());
+        }
+        return ret;
     }
 }

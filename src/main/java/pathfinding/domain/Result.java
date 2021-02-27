@@ -1,6 +1,5 @@
 package pathfinding.domain;
 
-import java.util.ArrayList;
 import pathfinding.struct.PointStack;
 
 public class Result {
@@ -8,6 +7,7 @@ public class Result {
     private int visitedNoNodes;
     private double distance;
     private PointStack path;
+    private PointStack pointsInHeap;
     private boolean[][] visited;
 
     /**
@@ -16,6 +16,14 @@ public class Result {
      */
     public double getRunTime() {
         return runTime;
+    }
+
+    public PointStack getPointsInHeap() {
+        return pointsInHeap;
+    }
+
+    public void setPointsInHeap(PointStack pointsInHeap) {
+        this.pointsInHeap = pointsInHeap;
     }
 
     /**

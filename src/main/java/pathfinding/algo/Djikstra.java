@@ -73,6 +73,8 @@ public class Djikstra extends PathFind {
         res.setRunTime(endTime - startTime);
         res.setVisited(visited);        
         res.setVisitedNoNodes(visitedNodes);
+        res.setPointsInHeap(heapToPoints(heap));
+        res.setVisitedNoNodes(visitedNodes);
         return res;
     }
 

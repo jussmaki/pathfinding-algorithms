@@ -73,8 +73,8 @@ public class AStar extends PathFind {
         res.setPath(path(previous, startX, startY, endX, endY));
         res.setRunTime(endTime - startTime);
         res.setVisited(visited);
+        res.setPointsInHeap(heapToPoints(heap));
         res.setVisitedNoNodes(visitedNodes);
         return res;
     }
-    
 }

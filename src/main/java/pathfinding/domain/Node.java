@@ -97,9 +97,9 @@ public class Node {
         return distance;
     }
 
-    /*public Point getLocation() {
+    public Point getLocation() {
         return location;
-    }*/
+    }
 
     /**
      *
