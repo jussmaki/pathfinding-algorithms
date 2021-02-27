@@ -80,7 +80,7 @@ class PathFind {
      * @return path as points in arraylist
      */
     public PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
-        PointStack path = new PointStack();
+        PointStack path = new PointStack(1024);
         if (previous[endX][endY] == null) {
             return path; //unreachable
         }
@@ -100,7 +100,7 @@ class PathFind {
     }
     
     public PointStack heapToPoints(MinHeap heap) {
-        PointStack ret = new PointStack();
+        PointStack ret = new PointStack(1024);
         while (!heap.isEmpty()) {
             ret.push(heap.poll().getLocation());
         }

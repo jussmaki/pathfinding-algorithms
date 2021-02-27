@@ -4,17 +4,23 @@ import pathfinding.domain.Point;
 
 public class PointStack {
 
+    private static int DEFAULT_SIZE = 8;
     private int arrSize;
     private Point[] arr;
     private int last;
     
     /**
      *
+     * @param heapSize
      */
-    public PointStack() {
-        arr = new Point[8];
-        arrSize = 8;
+    public PointStack(int heapSize) {
+        arr = new Point[heapSize];
+        arrSize = heapSize;
         last = 0;
+    }
+    
+    public PointStack() {
+        this(DEFAULT_SIZE);
     }
 
     public void push(Point p) {       
