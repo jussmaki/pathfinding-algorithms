@@ -47,7 +47,9 @@ public class UI extends Application {
         searchDjikstraButton.setDisable(true);
         Button searchAStarButton = new Button("AStar!");
         searchAStarButton.setDisable(true);
-        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton, searchAStarButton);        
+        Button searchIDAStarButton = new Button("IDAStar!");
+        searchIDAStarButton.setDisable(true);        
+        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton, searchAStarButton, searchIDAStarButton);        
         Label infoLabel = new Label("Click start point with mouse");
         BorderPane pane = new BorderPane();
         pane.setTop(flow);
@@ -84,6 +86,7 @@ public class UI extends Application {
                 infoLabel.setText("Ready to search path!");
                 searchDjikstraButton.setDisable(false);
                 searchAStarButton.setDisable(false);
+                searchIDAStarButton.setDisable(false);
             }
         });
         
@@ -110,7 +113,20 @@ public class UI extends Application {
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
                     pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
                     convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
+        });  
+        
+        searchIDAStarButton.setOnAction((event) -> {
+            results = new ArrayList<>();
+            for (int i = 0; i < 100; i++) {
+                results.add(pathFinder.searchIDAStar(startX, startY, endX, endY));
+            }
+            printResults("IDAStar");
+            Result result = results.get(0);
+            imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
+                    pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
+                    convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
+        
 
     }
     

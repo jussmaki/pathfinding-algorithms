@@ -58,8 +58,8 @@ public class PathFinder {
      * @param endY
      * @return result object
      */
-    public Result searchJPS(int startX, int startY, int endX, int endY) {
+    public Result searchIDAStar(int startX, int startY, int endX, int endY) {
         return IDAStar.search(this.getGrid(), startX, startY, endX, endY);
-    }    
+    }
 
 }
