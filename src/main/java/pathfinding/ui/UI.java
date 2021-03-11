@@ -49,7 +49,8 @@ public class UI extends Application {
         searchAStarButton.setDisable(true);
         Button searchIDAStarButton = new Button("IDAStar!");
         searchIDAStarButton.setDisable(true);        
-        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton, searchAStarButton, searchIDAStarButton);        
+        flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton,
+                searchAStarButton, searchIDAStarButton);        
         Label infoLabel = new Label("Click start point with mouse");
         BorderPane pane = new BorderPane();
         pane.setTop(flow);
