@@ -2,13 +2,13 @@ package pathfinding.domain;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import pathfinding.struct.PointStack;
+import pathfinding.struct.StackQueue;
 
 public class ResultTest {
     
     @Test
     public void returnCorrectNoOfNodesInpath() {
-        PointStack path = new PointStack();
+        StackQueue<Point> path = new StackQueue<>();
         path.push(new Point(1, 1));
         path.push(new Point(2, 1));
         path.push(new Point(3, 1));

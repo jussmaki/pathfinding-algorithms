@@ -4,11 +4,11 @@ import pathfinding.domain.Node;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.struct.MinHeap;
-import pathfinding.struct.PointStack;
+import pathfinding.struct.StackQueue;
 
-public class JPS extends PathFind {
+public class IDAStar extends PathFind {
     /**
-     * Search with JPS
+     * Search with IDAStar
      * @param arr 2d array of map
      * @param startX start point x-coordinate
      * @param startY start point y-coordinate
@@ -53,7 +53,7 @@ public class JPS extends PathFind {
             
             visited[node.getLocationX()][node.getLocationY()] = true;
             visitedNodes++;
-            PointStack ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
+            StackQueue<Point> ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
             while (!ps.isEmpty()) {
                 Point neighbour = ps.pop();
                 double curDist = dist[neighbour.getLocationX()][neighbour.getLocationY()];

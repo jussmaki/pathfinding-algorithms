@@ -2,7 +2,7 @@ package pathfinding.algo;
 
 import pathfinding.domain.Point;
 import pathfinding.struct.MinHeap;
-import pathfinding.struct.PointStack;
+import pathfinding.struct.StackQueue;
 
 class PathFind {
      /**
@@ -12,8 +12,8 @@ class PathFind {
      * @param y y-coordinate
      * @return neighbour coordinate points as PointStack-object
      */
-    public static PointStack getNeighbourCells(int[][] grid, int fromX, int fromY) {
-        PointStack neighbours = new PointStack();
+    public static StackQueue<Point> getNeighbourCells(int[][] grid, int fromX, int fromY) {
+        StackQueue<Point> neighbours = new StackQueue<>();
         for (int x = -1; x <= 1; x++) {
             for (int y = -1; y <= 1; y++) {
                 if (canGoFromTo(grid, fromX, fromY, fromX + x, fromY + y)) {
@@ -45,8 +45,8 @@ class PathFind {
      * @param endY end y-coordinate
      * @return path as points in PointStack-object
      */
-    public static PointStack path(Point[][] previous, int startX, int startY, int endX, int endY) {
-        PointStack path = new PointStack(1024);
+    public static StackQueue<Point> path(Point[][] previous, int startX, int startY, int endX, int endY) {
+        StackQueue<Point> path = new StackQueue<>(1024);
         if (previous[endX][endY] == null) {
             return path; //unreachable
         }
@@ -67,8 +67,8 @@ class PathFind {
      * @param heap MinHeap-object
      * @return points in heap as PointStack-object
      */
-    public static PointStack heapToPoints(MinHeap heap) {
-        PointStack ret = new PointStack(1024);
+    public static StackQueue<Point> heapToPoints(MinHeap heap) {
+        StackQueue<Point> ret = new StackQueue<>(1024);
         while (!heap.isEmpty()) {
             ret.push(heap.poll().getLocation());
         }

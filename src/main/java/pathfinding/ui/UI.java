@@ -19,7 +19,7 @@ import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
 import pathfinding.domain.Result;
-import pathfinding.struct.PointStack;
+import pathfinding.struct.StackQueue;
 
 public class UI extends Application {
 
@@ -89,32 +89,32 @@ public class UI extends Application {
         
         searchDjikstraButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 1000; i++) {
+            for (int i = 0; i < 100; i++) {
                 results.add(pathFinder.searchDjikstra(startX, startY, endX, endY));
             }
             printResults("Djikstra");
             Result result = results.get(0);
-            System.out.println(result);
+            //System.out.println(result);
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
-                    pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
-                    convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
+                    pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
+                    convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 1000; i++) {
-                results.add(pathFinder.searchDjikstra(startX, startY, endX, endY));
+            for (int i = 0; i < 100; i++) {
+                results.add(pathFinder.searchAStar(startX, startY, endX, endY));
             }
             printResults("AStar");
             Result result = results.get(0);
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
-                    pathFinder.getGrid(), convertPSToArrayList(result.getPath()),
-                    convertPSToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
+                    pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
+                    convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
         });        
 
     }
     
-    private ArrayList<Point> convertPSToArrayList(PointStack ps) {
+    private ArrayList<Point> convertSQToArrayList(StackQueue<Point> ps) {
         ArrayList<Point> ret = new ArrayList<>();
         while (!ps.isEmpty()) {
             ret.add(ps.pop());
@@ -136,7 +136,7 @@ public class UI extends Application {
                 max = r.getRunTime();
             }
         }
-        long avg = all / 1000;
+        long avg = all / 100;
         System.out.println("min runtime: " + min / 1e9 + " s.");
         System.out.println("max runtime: " + max / 1e9 + " s.");
         System.out.println("avg runtime: " + avg / 1e9 + " s.");

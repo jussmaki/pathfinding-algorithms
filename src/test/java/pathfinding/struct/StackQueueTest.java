@@ -9,13 +9,13 @@ import org.junit.Before;
 import org.junit.Test;
 import pathfinding.domain.Point;
 
-public class PointStackTest {
+public class StackQueueTest {
     
-    PointStack ps;
+    StackQueue ps;
     
     @Before
     public void setUp() {
-        ps = new PointStack();
+        ps = new StackQueue<Point>();
     }
     
     @Test

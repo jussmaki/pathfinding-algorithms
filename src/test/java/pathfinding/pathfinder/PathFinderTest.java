@@ -17,7 +17,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchDjikstra(0, 4, 9, 2).getPath());
+        ArrayList<Point> path = PSUtil.convertSQToArrayList(pathFinder.searchDjikstra(0, 4, 9, 2).getPath());
         assertTrue(path.size() > 0);        
     }
 
@@ -29,7 +29,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchAStar(0, 4, 9, 2).getPath());
+        ArrayList<Point> path = PSUtil.convertSQToArrayList(pathFinder.searchAStar(0, 4, 9, 2).getPath());
         assertTrue(path.size() > 0);        
     }
     
@@ -41,7 +41,7 @@ public class PathFinderTest {
         } catch (Exception ex) {
             fail(ex.toString());
         }
-        ArrayList<Point> path = PSUtil.convertPSToArrayList(pathFinder.searchJPS(0, 4, 9, 2).getPath());
+        ArrayList<Point> path = PSUtil.convertSQToArrayList(pathFinder.searchJPS(0, 4, 9, 2).getPath());
         assertTrue(path.size() > 0);        
     }    
     

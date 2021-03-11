@@ -1,13 +1,13 @@
 package pathfinding.domain;
 
-import pathfinding.struct.PointStack;
+import pathfinding.struct.StackQueue;
 
 public class Result {
     private long runTime;
     private int visitedNoNodes;
     private double distance;
-    private PointStack path;
-    private PointStack pointsInHeap;
+    private StackQueue<Point> path;
+    private StackQueue<Point> pointsInHeap;
     private boolean[][] visited;
 
     /**
@@ -18,11 +18,11 @@ public class Result {
         return runTime;
     }
 
-    public PointStack getPointsInHeap() {
+    public StackQueue<Point> getPointsInHeap() {
         return pointsInHeap;
     }
 
-    public void setPointsInHeap(PointStack pointsInHeap) {
+    public void setPointsInHeap(StackQueue<Point> pointsInHeap) {
         this.pointsInHeap = pointsInHeap;
     }
 
@@ -70,7 +70,7 @@ public class Result {
      *
      * @return
      */
-    public PointStack getPath() {
+    public StackQueue<Point> getPath() {
         return path;
     }
 
@@ -78,7 +78,7 @@ public class Result {
      *
      * @param path
      */
-    public void setPath(PointStack path) {
+    public void setPath(StackQueue<Point> path) {
         this.path = path;
     }
 

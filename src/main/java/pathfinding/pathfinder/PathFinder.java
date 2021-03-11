@@ -2,7 +2,7 @@ package pathfinding.pathfinder;
 
 import pathfinding.algo.AStar;
 import pathfinding.algo.Djikstra;
-import pathfinding.algo.JPS;
+import pathfinding.algo.IDAStar;
 import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
 
@@ -51,7 +51,7 @@ public class PathFinder {
     }
     
     /**
-     * Start search with JPS
+     * Start search with IDAStar
      * @param startX
      * @param startY
      * @param endX
@@ -59,7 +59,7 @@ public class PathFinder {
      * @return result object
      */
     public Result searchJPS(int startX, int startY, int endX, int endY) {
-        return JPS.search(this.getGrid(), startX, startY, endX, endY);
+        return IDAStar.search(this.getGrid(), startX, startY, endX, endY);
     }    
 
 }
