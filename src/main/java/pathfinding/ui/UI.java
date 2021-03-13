@@ -118,7 +118,7 @@ public class UI extends Application {
         
         searchIDAStarButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < 1; i++) {
                 results.add(pathFinder.searchIDAStar(startX, startY, endX, endY));
             }
             printResults("IDAStar");

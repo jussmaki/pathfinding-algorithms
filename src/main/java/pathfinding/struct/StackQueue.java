@@ -41,6 +41,10 @@ public class StackQueue<T> {
         return pollLast();
     }
     
+    public T peek() {
+        return (T) arr[last-1];
+    }
+    
     /**
      * Remove last node from StackQueue
      * @return top node of StackQueue
@@ -75,6 +79,31 @@ public class StackQueue<T> {
         }
         return true;
     }
+    
+    public boolean inStack(Object o) {
+        for (int i=first; i<last; i++) {
+           if (arr[i] == null) {
+               continue;
+           }
+           if (arr[i].equals(o)) {
+               return true;
+           }
+        }
+        return false;
+    }
+    
+    /*public StackQueue<T> copy() {
+        Arrays.cop
+        StackQueue<T> ret = new StackQueue<>(this.arrSize);
+        for (int i=last; i>first; --i) {
+           if (arr[i] == null) {
+               continue;
+           }
+           ret.push(arr[i]);
+        }
+        return ret;
+        
+    }*/
     
     private void expandArray() {
         arrSize = arrSize * 2;      
