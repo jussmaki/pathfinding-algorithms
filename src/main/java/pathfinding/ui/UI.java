@@ -19,6 +19,7 @@ import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
+import javafx.stage.FileChooser;
 import pathfinding.domain.Result;
 import pathfinding.struct.StackQueue;
 
@@ -52,6 +53,15 @@ public class UI extends Application {
         Button searchIDAStarButton = new Button("IDAStar!");
         searchIDAStarButton.setDisable(true);
         TextField runXTimes = new TextField("1");
+        FlowPane coordinatesFlowPanel = new FlowPane();
+        TextField startXTF = new TextField("");
+        TextField startYTF = new TextField("");
+        TextField endXTF = new TextField("");
+        TextField endYTF = new TextField("");
+        Button setCoordinatesButton = new Button("set!");
+        coordinatesFlowPanel.getChildren().addAll(new Label("start x:"), startXTF,
+                new Label("start y:"), startYTF, new Label("end x:"), endXTF,
+                new Label("end y:"), endYTF, setCoordinatesButton);
         Label coordinates = new Label("start: " + startX + "," + startY + " end: " + endX + "," + endY);
         flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton,
                 searchAStarButton, searchIDAStarButton, runXTimes, coordinates);        
@@ -66,6 +76,10 @@ public class UI extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.show();
+        fileNameTextField.setOnMouseClicked((event) -> {
+            fileNameTextField.setText(new FileChooser().showOpenDialog(primaryStage).getAbsolutePath());
+            loadButton.getOnAction().handle(null);
+        });
         
         loadButton.setOnAction((event) -> {
             try {
@@ -96,6 +110,7 @@ public class UI extends Application {
             coordinates.setText("start: " + startX + "," + startY + " end: " + endX + "," + endY);
         });
         
+
         searchDjikstraButton.setOnAction((event) -> {
             results = new ArrayList<>();
             for (int i = 0; i < times; i++) {
@@ -139,6 +154,27 @@ public class UI extends Application {
                 runXTimes.setText(String.valueOf(times));
             } 
             times = Integer.valueOf(runXTimes.getText());
+        });
+        
+        coordinates.setOnMouseClicked((event) -> {
+            startXTF.setText("" + startX);
+            startYTF.setText("" + startY);
+            endXTF.setText("" + endX);
+            endYTF.setText("" + endY);
+            pane.setTop(coordinatesFlowPanel);
+        });
+        
+        setCoordinatesButton.setOnAction((event) -> {
+            startX = Integer.valueOf(startXTF.getText());
+            startY = Integer.valueOf(startYTF.getText());
+            endX = Integer.valueOf(endXTF.getText());
+            endY = Integer.valueOf(endYTF.getText());
+            coordinates.setText("start: " + startX + "," + startY + " end: " + endX + "," + endY);
+            pane.setTop(flow);
+            infoLabel.setText("Ready to search path!");
+            searchDjikstraButton.setDisable(false);
+            searchAStarButton.setDisable(false);
+            searchIDAStarButton.setDisable(false);
         });
         
     }
