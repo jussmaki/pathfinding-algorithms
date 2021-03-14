@@ -1,6 +1,5 @@
 package pathfinding.algo;
 
-import pathfinding.domain.Node;
 import pathfinding.domain.Point;
 import pathfinding.struct.MinHeap;
 import pathfinding.struct.StackQueue;
@@ -24,25 +23,6 @@ class PathFind {
         }
         return neighbours;
     }
-    
-    //muuta tää myöhemmin
-    /*public static StackQueue<Point> sortPointsByGPlusH(double curDist, Point endPoint, StackQueue<Point> points) {
-        MinHeap minHeap = new MinHeap();
-        while(!points.isEmpty()) {
-            Point p = points.pop();
-            minHeap.add(new Node(p.getLocationX(), p.getLocationY(), curDist, endPoint));
-        }
-        StackQueue<Point> reverse = new StackQueue<>();
-        while(!minHeap.isEmpty()) {
-            Node node = minHeap.poll();
-            reverse.push(new Point(node.getLocationX(), node.getLocationY()));
-        }
-        StackQueue<Point> ret = new StackQueue<>();
-        while(!reverse.isEmpty()) {
-            ret.push(reverse.pop());
-        }
-        return ret;
-    }*/
     
      /**
      * Euclidean distance of two points
