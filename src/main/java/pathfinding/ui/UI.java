@@ -18,6 +18,7 @@ import javafx.stage.Stage;
 import pathfinding.pathfinder.PathFinder;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
 import pathfinding.domain.Result;
 import pathfinding.struct.StackQueue;
 
@@ -29,6 +30,7 @@ public class UI extends Application {
     int startY = -1;
     int endX = -1;
     int endY = -1;
+    int times = 1;
     boolean startPointSelected = false;    
     
     @Override
@@ -48,9 +50,11 @@ public class UI extends Application {
         Button searchAStarButton = new Button("AStar!");
         searchAStarButton.setDisable(true);
         Button searchIDAStarButton = new Button("IDAStar!");
-        searchIDAStarButton.setDisable(true);        
+        searchIDAStarButton.setDisable(true);
+        TextField runXTimes = new TextField("1");
+        Label coordinates = new Label("start: " + startX + "," + startY + " end: " + endX + "," + endY);
         flow.getChildren().addAll(fileNameTextField, loadButton, searchDjikstraButton,
-                searchAStarButton, searchIDAStarButton);        
+                searchAStarButton, searchIDAStarButton, runXTimes, coordinates);        
         Label infoLabel = new Label("Click start point with mouse");
         BorderPane pane = new BorderPane();
         pane.setTop(flow);
@@ -89,11 +93,12 @@ public class UI extends Application {
                 searchAStarButton.setDisable(false);
                 searchIDAStarButton.setDisable(false);
             }
+            coordinates.setText("start: " + startX + "," + startY + " end: " + endX + "," + endY);
         });
         
         searchDjikstraButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < times; i++) {
                 results.add(pathFinder.searchDjikstra(startX, startY, endX, endY));
             }
             printResults("Djikstra");
@@ -101,12 +106,12 @@ public class UI extends Application {
             //System.out.println(result);
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
                     pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
-                    convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), 16711680), null));
+                    convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
         });
         
         searchAStarButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 100; i++) {
+            for (int i = 0; i < times; i++) {
                 results.add(pathFinder.searchAStar(startX, startY, endX, endY));
             }
             printResults("AStar");
@@ -118,7 +123,7 @@ public class UI extends Application {
         
         searchIDAStarButton.setOnAction((event) -> {
             results = new ArrayList<>();
-            for (int i = 0; i < 1; i++) {
+            for (int i = 0; i < times; i++) {
                 results.add(pathFinder.searchIDAStar(startX, startY, endX, endY));
             }
             printResults("IDAStar");
@@ -126,9 +131,16 @@ public class UI extends Application {
             imageView.setImage(SwingFXUtils.toFXImage(drawRouteInMaze(
                     pathFinder.getGrid(), convertSQToArrayList(result.getPath()),
                     convertSQToArrayList(result.getPointsInHeap()), result.getVisited(), Color.GREEN.getRGB()), null));
-        });        
+        });
         
-
+        runXTimes.setOnKeyReleased((event) -> {
+            if ((!"0123456789".contains(event.getText()) && !event.getCode().equals(KeyCode.BACK_SPACE)) ||
+                    runXTimes.getText().equals("") || runXTimes.getText().startsWith("0")) {
+                runXTimes.setText(String.valueOf(times));
+            } 
+            times = Integer.valueOf(runXTimes.getText());
+        });
+        
     }
     
     private ArrayList<Point> convertSQToArrayList(StackQueue<Point> ps) {
@@ -140,7 +152,7 @@ public class UI extends Application {
     }
     
     private void printResults(String algorithm) {
-        System.out.println(algorithm);
+        System.out.println(algorithm + " algorithm ran " + times + " times");
         long all = 0;
         long min = Long.MAX_VALUE;
         long max = Long.MIN_VALUE;
@@ -153,7 +165,7 @@ public class UI extends Application {
                 max = r.getRunTime();
             }
         }
-        long avg = all / 100;
+        long avg = all / times;
         System.out.println("min runtime: " + min / 1e9 + " s.");
         System.out.println("max runtime: " + max / 1e9 + " s.");
         System.out.println("avg runtime: " + avg / 1e9 + " s.");
