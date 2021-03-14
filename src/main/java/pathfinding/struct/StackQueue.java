@@ -1,5 +1,10 @@
 package pathfinding.struct;
 
+/**
+ *
+ * @author jussmaki
+ * @param <T>
+ */
 public class StackQueue<T> {
 
     private static final int DEFAULT_SIZE = 8;
@@ -28,6 +33,7 @@ public class StackQueue<T> {
 
     /**
      * Insert object in StackQueue
+     * @param p object to insert in StackQueue
      */
     public void push(Object p) {       
         if (last >= arrSize) {
@@ -37,24 +43,36 @@ public class StackQueue<T> {
         last++; 
     }
     
+    /**
+     * Remove last node from StackQueue
+     * @return top node of StackQueue
+     */
     public T pop() {
         return pollLast();
     }
     
+    /**
+     * Returns last element in StackQueue
+     * @return
+     */
     public T peek() {
-        return (T) arr[last-1];
+        return (T) arr[last - 1];
     }
     
     /**
      * Remove last node from StackQueue
      * @return top node of StackQueue
-     */    
+     */
     public T pollLast() {
         last--;        
         Object p = arr[last];
         return (T) p;
     }
     
+    /**
+     * Remove first node from StackQueue
+     * @return top node of StackQueue
+     */
     public T pollFirst() {
         Object p = arr[first];
         first++;
@@ -79,31 +97,6 @@ public class StackQueue<T> {
         }
         return true;
     }
-    
-    public boolean inStack(Object o) {
-        for (int i=first; i<last; i++) {
-           if (arr[i] == null) {
-               continue;
-           }
-           if (arr[i].equals(o)) {
-               return true;
-           }
-        }
-        return false;
-    }
-    
-    /*public StackQueue<T> copy() {
-        Arrays.cop
-        StackQueue<T> ret = new StackQueue<>(this.arrSize);
-        for (int i=last; i>first; --i) {
-           if (arr[i] == null) {
-               continue;
-           }
-           ret.push(arr[i]);
-        }
-        return ret;
-        
-    }*/
     
     private void expandArray() {
         arrSize = arrSize * 2;      
