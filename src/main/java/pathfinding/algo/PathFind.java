@@ -26,7 +26,7 @@ class PathFind {
     }
     
     //muuta tää myöhemmin
-    public static StackQueue<Point> sortPointsByGPlusH(double curDist, Point endPoint, StackQueue<Point> points) {
+    /*public static StackQueue<Point> sortPointsByGPlusH(double curDist, Point endPoint, StackQueue<Point> points) {
         MinHeap minHeap = new MinHeap();
         while(!points.isEmpty()) {
             Point p = points.pop();
@@ -42,7 +42,7 @@ class PathFind {
             ret.push(reverse.pop());
         }
         return ret;
-    }
+    }*/
     
      /**
      * Euclidean distance of two points

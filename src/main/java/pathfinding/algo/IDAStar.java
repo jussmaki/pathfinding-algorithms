@@ -1,6 +1,5 @@
 package pathfinding.algo;
 
-import pathfinding.domain.Node;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.struct.StackQueue;
@@ -8,6 +7,8 @@ import pathfinding.struct.StackQueue;
 public class IDAStar extends PathFind {
     
     private static final double DEFAULT_DIST = Double.MAX_VALUE;
+    
+    private static final double FOUND = -1;
     
     private static StackQueue<Point> path;
         
@@ -19,7 +20,7 @@ public class IDAStar extends PathFind {
     
     private static boolean[][] visited;
     
-    private static int visitedNodes;
+    private static long visitedNodes;
     
     /**
      * Search with IDAStar
@@ -46,7 +47,7 @@ public class IDAStar extends PathFind {
         
         path.push(new Point(startX, startY));
         
-        threshold = getBirdsWayDistance(startX, startY, endX, endY);
+        /*double*/ threshold = getBirdsWayDistance(startX, startY, endX, endY);
         
         found = false;
         
@@ -58,9 +59,14 @@ public class IDAStar extends PathFind {
         //StackQueue<Point> path = new StackQueue<>();
         
         while (true) {
-            //double d = abc(arr, path, 0, threshold);
-            double d = abc(arr, path, 0, threshold);
-          
+            //double d = ida2(arr, path, 0, threshold);
+            System.out.println(threshold);
+            double d = ida2(arr, 0, threshold);
+            
+            if (d == DEFAULT_DIST-1) {
+                continue;
+            }
+            
             if (found || d == DEFAULT_DIST) {
                 distance = d;
                 break;
@@ -74,34 +80,6 @@ public class IDAStar extends PathFind {
             threshold = d;
             
         }
-        
-       /* stack.push(new Node(startX, startY, 0, endPoint));
-      
-        
-        while (!stack.isEmpty()) {
-            Node node = stack.pop();
-            visitedNodes++;
-            if (!visited[node.getLocationX()][node.getLocationY()]) {
-                visited[node.getLocationX()][node.getLocationY()] = true;
-                //path.push(node.getLocation());
-                            //stop if we have found the goal node
-                if (node.getLocationX() == endX && node.getLocationY() == endY) {
-                    break;
-                }            
-                StackQueue<Point> ps = getNeighbourCells(arr, node.getLocationX(), node.getLocationY());
-                while (!ps.isEmpty()) {
-                    Point next = ps.pop();
-                    //if (previous[next.getLocationX()][next.getLocationY()] == null) {
-                    //    previous[next.getLocationX()][next.getLocationY()] = node.getLocation();
-                    //}
-                    //System.out.println(node.getLocation());
-                    stack.push(new Node(next.getLocationX(), next.getLocationY(), 0, endPoint));
-                }
-            }
-        }
-        
-        //path = IDAStar(new Point(startX, startY));*/
-        
         
         long endTime = System.nanoTime();
         
@@ -123,17 +101,23 @@ public class IDAStar extends PathFind {
         return res;
     }
 
-    private static StackQueue copyStack(StackQueue sq) {
+    /*private static StackQueue copyStack(StackQueue sq) {
         StackQueue<Point> ret = new StackQueue<>();
         while (!sq.isEmpty()) {
             ret.push(sq.pollFirst());
         }
         return ret;
-    }
+    }*/
     
-    private static double abc(int[][] arr, StackQueue<Point> path, double distance, double threshold) {
+    private static double ida2(int[][] arr, double distance, double threshold) {
         Point current = path.peek();
-        //System.out.println(current);
+        //if (visited[current.getLocationX()][current.getLocationY()]) {
+        //    return DEFAULT_DIST-1;
+        //}
+        visited[current.getLocationX()][current.getLocationY()] = true;
+        visitedNodes++;
+        //System.out.println(found);
+        System.out.println(current + " distance: " + distance + " threshold: " + threshold + " path.size: " + path.size() + " visited nodes: " + visitedNodes);
         double estimate = distance + getBirdsWayDistance(current.getLocationX(), current.getLocationY(), endPoint.getLocationX(), endPoint.getLocationY());
         if (estimate > threshold) {
             //threshold = estimate;
@@ -147,21 +131,22 @@ public class IDAStar extends PathFind {
             
         double min = DEFAULT_DIST;
            
-        StackQueue<Point> ps = sortPointsByGPlusH(estimate, endPoint, getNeighbourCells(arr, current.getLocationX(), current.getLocationY()));
+        //StackQueue<Point> ps = sortPointsByGPlusH(estimate, endPoint, getNeighbourCells(arr, current.getLocationX(), current.getLocationY()));
+        StackQueue<Point> ps = getNeighbourCells(arr, current.getLocationX(), current.getLocationY());
         while (!ps.isEmpty()) {
             Point next = ps.pop();
             //if (!inPath[next.getLocationX()][next.getLocationY()]) {
                 //inPath[next.getLocationX()][next.getLocationY()] = true;
             if (/*!visited[next.getLocationX()][next.getLocationY()] && */ !path.inStack(next)) {
-                visited[next.getLocationX()][next.getLocationY()] = true;
-                visitedNodes++;
+                //visited[next.getLocationX()][next.getLocationY()] = true;
+                //visitedNodes++;
                 if (visitedNodes % 1000 == 0) {
                 //    System.out.println("visited nodes: " + visitedNodes);
                 }
                 path.push(next);
                 double newDistance = distance + getBirdsWayDistance(current.getLocationX(), current.getLocationY(), next.getLocationX() ,next.getLocationY());
-                double newEstimate = abc(arr, path, newDistance, threshold);
-                //double newEstimate = abc(arr, path, newDistance, newEstimate);
+                double newEstimate = ida2(arr, newDistance, threshold);
+                //double newEstimate = ida2(arr, path, newDistance, newEstimate);
                 if (found) {
                     return newEstimate;
                 }

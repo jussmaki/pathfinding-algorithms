@@ -23,7 +23,7 @@ public class AStar extends PathFind {
         
         Point endPoint = new Point(endX, endY);
         
-        int visitedNodes = 0;
+        long visitedNodes = 0;
         long startTime = System.nanoTime();
         
         Point[][] previous = new Point[arr.length][arr[0].length];

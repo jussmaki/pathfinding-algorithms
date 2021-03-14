@@ -4,7 +4,7 @@ import pathfinding.struct.StackQueue;
 
 public class Result {
     private long runTime;
-    private int visitedNoNodes;
+    private long visitedNoNodes;
     private double distance;
     private StackQueue<Point> path;
     private StackQueue<Point> pointsInHeap;
@@ -38,7 +38,7 @@ public class Result {
      *
      * @return
      */
-    public int getVisitedNoNodes() {
+    public long getVisitedNoNodes() {
         return visitedNoNodes;
     }
 
@@ -46,7 +46,7 @@ public class Result {
      *
      * @param visitedNoNodes
      */
-    public void setVisitedNoNodes(int visitedNoNodes) {
+    public void setVisitedNoNodes(long visitedNoNodes) {
         this.visitedNoNodes = visitedNoNodes;
     }
 
