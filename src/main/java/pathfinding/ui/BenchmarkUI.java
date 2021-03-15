@@ -65,7 +65,8 @@ public class BenchmarkUI {
                 String result = algo + " " + r.getRunTime() +  " " + mapName + " " + r;
                 writeToFile(outputFile, result);
             }
-            writeToFile(outputFile, algo + " total time: " + totalTime + " ns (" + totalTime / 1e9 + " s.) on map: " + mapName);
+            writeToFile(outputFile, algo + " total time: " + totalTime +
+                    " ns (" + totalTime / 1e9 + " s.) on map: " + mapName);
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }
