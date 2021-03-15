@@ -12,8 +12,8 @@ import org.junit.Test;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
-import utils.Scenario;
-import utils.ScenarioReader;
+import pathfinding.file.Scenario;
+import pathfinding.file.ScenarioReader;
 
 public class DjikstraTest {
     
@@ -75,7 +75,7 @@ public class DjikstraTest {
                 Result r = Djikstra.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.00001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -100,7 +100,7 @@ public class DjikstraTest {
                 Result r = Djikstra.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -125,7 +125,7 @@ public class DjikstraTest {
                 Result r = Djikstra.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -147,7 +147,7 @@ public class DjikstraTest {
                 Result r = Djikstra.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());

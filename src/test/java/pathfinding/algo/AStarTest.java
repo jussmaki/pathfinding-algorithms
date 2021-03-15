@@ -12,8 +12,8 @@ import org.junit.Test;
 import pathfinding.domain.Point;
 import pathfinding.domain.Result;
 import pathfinding.file.MapReader;
-import utils.Scenario;
-import utils.ScenarioReader;
+import pathfinding.file.Scenario;
+import pathfinding.file.ScenarioReader;
 
 public class AStarTest {
 
@@ -76,7 +76,7 @@ public class AStarTest {
                 Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -101,9 +101,7 @@ public class AStarTest {
                 Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                System.out.println(r);
-                System.out.println(s);
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -128,7 +126,7 @@ public class AStarTest {
                 Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());
@@ -150,7 +148,7 @@ public class AStarTest {
                 Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(scenarioDistance == resultDistance);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());

@@ -1,4 +1,4 @@
-package utils;
+package pathfinding.file;
 
 public class Scenario {
     int startX;
