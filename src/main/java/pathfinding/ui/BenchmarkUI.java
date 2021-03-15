@@ -40,7 +40,11 @@ public class BenchmarkUI {
                 System.out.println("loading scenarios failed");
                 return;
             }
+            long totalScenarios = 0; 
             long totalTime = 0;
+            double totalDistance = 0;
+            long totalNodesInPath = 0;
+            long totalVisitedNodes = 0;
             for (Scenario s : scenarios) {
                 Result r = null;
                 if (algo.equals("djikstra")) {
@@ -49,7 +53,7 @@ public class BenchmarkUI {
                 if (algo.equals("astar")) {
                     r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 }
-                if (algo.equals("ida")) {
+                if (algo.equals("idastar")) {
                     r = IDAStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 }
                 float resultDistance = (float) r.getDistance();
@@ -60,13 +64,27 @@ public class BenchmarkUI {
                     System.out.println(s);
                     return;
                 }
-                System.out.println(r);
+                //System.out.println(r);
+                totalScenarios += 1;
                 totalTime += r.getRunTime();
-                String result = algo + " " + r.getRunTime() +  " " + mapName + " " + r;
+                totalDistance += r.getDistance();
+                totalNodesInPath += r.getNoNodesInPath();
+                totalVisitedNodes += r.getVisitedNoNodes();
+
+                
+                String result = algo + " " + r.getRunTime() +  " ns. " + mapName + " " + r;
                 writeToFile(outputFile, result);
+                System.out.println(result);
             }
-            writeToFile(outputFile, algo + " total time: " + totalTime +
-                    " ns (" + totalTime / 1e9 + " s.) on map: " + mapName);
+            String resultTotals = algo + " on map: " + mapName + ".map\n" +
+                    "scenarios count: " + totalScenarios + "\n" +
+                    "total time: " + totalTime + " ns\n" +
+                    "total time: " + (totalTime / 1e9) + " s\n" +
+                    "total distance: " + totalDistance + "\n" +
+                    "total nodes in paths: " + totalNodesInPath + "\n" +
+                    "total visited nodes: " + totalVisitedNodes;
+            writeToFile(outputFile, resultTotals);
+            System.out.println(resultTotals);
         } catch (FileNotFoundException ex) {
             System.out.println(ex);
         }
