@@ -9,6 +9,8 @@ Tietorakenteet ja algoritmit harjoitustyö
 
 [Määrittelydokumentti](dokumentaatio/maarittelydokumentti.md)
 
+[Käyttöohje](dokumentaatio/kayttoohje.md)
+
 [Testausdokumentti](dokumentaatio/testausdokumentti.md)
 
 [Toteutusdokumentti](dokumentaatio/toteutusdokumentti.md)
