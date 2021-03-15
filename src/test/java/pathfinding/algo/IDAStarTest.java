@@ -75,7 +75,7 @@ public class IDAStarTest {
                 Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.0001);
+                assertTrue(Math.abs(scenarioDistance - resultDistance) <= 0.002);
             }
         } catch (FileNotFoundException ex) {
             fail(ex.toString());

@@ -54,7 +54,7 @@ public class BenchmarkUI {
                 }
                 float resultDistance = (float) r.getDistance();
                 float scenarioDistance = (float) s.getShortestPath();
-                if (Math.abs(scenarioDistance - resultDistance) >= 0.0001) {
+                if (Math.abs(scenarioDistance - resultDistance) >= 0.002) {
                     System.out.println("distance mitshmatch");
                     System.out.println(r);
                     System.out.println(s);
