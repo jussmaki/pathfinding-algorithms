@@ -72,7 +72,9 @@ public class BenchmarkUI {
                 totalVisitedNodes += r.getVisitedNoNodes();
 
                 
-                String result = algo + " " + r.getRunTime() +  " ns. " + mapName + " " + r;
+                String result = algo + " " + r.getRunTime() +  " ns. " + mapName +
+                        " start: " + s.getStartX() + "," + s.getStartY() +
+                        " end: " + s.getEndX() + "," + s.getEndY() + " " + r;
                 writeToFile(outputFile, result);
                 System.out.println(result);
             }
