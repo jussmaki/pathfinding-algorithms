@@ -76,18 +76,30 @@ class PathFind {
         return ret;
     }
     
+    private static int abs(int integer) {
+        if (integer < 0) {
+            return -integer;
+        }
+        return integer;
+    }
+    
     private static boolean canGoFromTo(int[][] grid, int x1, int y1, int x2, int y2) {
-        if (x1 == x2 && y1 == y2) {
+        if (x1 == x2 && y1 == y2) { //moving from self to self
             return false;
         }
-        if (grid[x1][y1] != 1) {
+        if (grid[x1][y1] != 1) { //moving from wall
             return false;
         }
-        if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) {
+        if (x2 < 0 || x2 >= grid.length || y2 < 0 || y2 >= grid[0].length) { //moving out of bounds
             return false;
         }
-        if (grid[x2][y2] != 1) {
+        if (grid[x2][y2] != 1) { //moving to wall
             return false;
+        }
+        if (abs(x1 - x2) - abs(y1 - y2) < 1) { //is diagonal move, diagonal movement can not cut through walls
+            if ((grid[x1][y2] != 1 || grid[x2][y1] != 1)) {
+                return false;
+            }
         }
         return true;
     }

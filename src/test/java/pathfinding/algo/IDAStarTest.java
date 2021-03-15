@@ -1,12 +1,18 @@
 package pathfinding.algo;
 
+import java.io.FileNotFoundException;
 import utils.PSUtil;
 import java.util.ArrayList;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import org.junit.Test;
 import pathfinding.domain.Point;
+import pathfinding.domain.Result;
+import pathfinding.file.MapReader;
+import utils.Scenario;
+import utils.ScenarioReader;
 
 public class IDAStarTest {
 
@@ -52,6 +58,27 @@ public class IDAStarTest {
         assertFalse(path.contains(new Point(2, 1)));
         assertFalse(path.contains(new Point(3, 2)));
         assertFalse(path.contains(new Point(3, 3)));
-    }    
+    }
     
+    @Test
+    public void findsShortestsPathInAllScenariousOnLTHouseMap() {
+        ArrayList<Scenario> scenarios;
+        int[][] arr;
+        try {
+            scenarios = ScenarioReader.readScenarios("resources/lt_house.map.scen");
+            arr = MapReader.readMap("resources/lt_house.map");
+            if (scenarios == null || scenarios.isEmpty()) {
+                fail("loading scenarios failed");
+            }
+            
+            for (Scenario s : scenarios) {
+                Result r = AStar.search(arr,  s.getStartX(), s.getStartY(), s.getEndX(), s.getEndY());
+                float resultDistance = (float) r.getDistance();
+                float scenarioDistance = (float) s.getShortestPath();
+                assertTrue(scenarioDistance == resultDistance);
+            }
+        } catch (FileNotFoundException ex) {
+            fail(ex.toString());
+        }
+    }
 }

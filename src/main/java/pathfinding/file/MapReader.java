@@ -23,7 +23,7 @@ public class MapReader {
         if (!s.nextLine().equals("map")) {
             throw new IllegalArgumentException();
         }
-        int[][] map = new int[height][width];
+        int[][] map = new int[width][height];
         int column = 0;
         while (s.hasNextLine()) {
             String row = s.nextLine();
