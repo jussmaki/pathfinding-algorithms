@@ -8,13 +8,13 @@ Tietojenkäsittelytieteen kandiohjelmaan kuuluvan TiRa-laboratoriotyön aiheeksi
 | :----:|:-----| :-----|
 |Djikstra|O(n + m log n)|O(n)|
 | AStar |O(n + m log n)| O(n)|
-|IDAStar|O(m^n)|O(n)|
+|IDAStar|O(m^n)|O(d)|
 
 Tehokkuusvertailuun valitsin mukaan Djikstran algoritmin, AStarin, ja IDAStarin. AStarin ja Djikstran valitsin siksi että ne ovat lyhyimmän polun etsimisessä “standardi” ja IDAStarin, koska en sitä ole aiemmin aiemmin toteuttanut.
 
 #### Miten tavoiteltaviin tila- ja aikavaativuuksiin on päädytty?
 
-AStarin ja Djiktran algoritmin voi molemmat toteuttaa keon avulla, jolloin keon operaatioiden aikavaativuuksien johdosta kokonaisaikavaativuudeksi tulee O(n + m log n) ja tilavaativuus on keon toiminnan johdosta O(n). Toisin kuin edellämainitut IDAStar käyttää syvyyshakua ja pitää muistissa vain löydettyä polkua pinossa. IDAstarin hyöty ja haitta onkin se että algoritmi ei pidä kirjaa kaikista solmuista, joissa se on käynyt, joten se voi saman haun aikana käydä samassa solmussa useamman kerran. Astarin tilavaativuus näin ollen on O(n), jossa n on haun syvyys.
+AStarin ja Djiktran algoritmin voi molemmat toteuttaa keon avulla, jolloin keon operaatioiden aikavaativuuksien johdosta kokonaisaikavaativuudeksi tulee O(n + m log n) ja tilavaativuus on keon toiminnan johdosta O(n). Toisin kuin edellämainitut IDAStar käyttää syvyyshakua ja pitää muistissa vain löydettyä polkua pinossa. IDAstarin hyöty ja haitta onkin se että algoritmi ei pidä kirjaa kaikista solmuista, joissa se on käynyt, joten se voi saman haun aikana käydä samassa solmussa useamman kerran. Astarin tilavaativuus näin ollen on O(d), jossa d on haun syvyys.
 
 ### Ohjelman toiminta
 
