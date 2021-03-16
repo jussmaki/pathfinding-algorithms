@@ -78,6 +78,10 @@ Testit eivät mene läpi, jos erotus on yhtäsuuri tai suurempi kuin 0,002.
 
 Koska syötteenä käytettävien tiedosten lukujen tarkkuus on pienempi kuin ohjelmassa käytetyn Javan double -tyypin, pyöristysvirheistä johtuvien epätarkkuuksien takia pieni heitto on pakko sallia. Sallittu toleranssi on kuitenkin niin pieni että sillä ei ole vaikutusta testien toimintaan tai ohjelman tulosten oikeellisuuteen.
 
+### Suorituskykytestaus
+
+Dokumentaatio suorituskykytestauksesta löytyy [toteutusraportista](toteutusdokumentti.md#suorituskyky--ja-o-analyysivertailu).
+
 ## Ohjelman toiminnan oikeellisuudesta varmistuminen
 
 Ohjelmalle voi suorittaa järjestelmätestausta käyttämällä sitä normaalisti ja vertaamalla tuloksia Moving AI Labsin ilmoittamaan. Käyttöliittymään on toteuttu löydetyn reitin visualisointi, jolloin voi myös visuaalisesta arvioida löydettyä polkua voi arvioida ja todeta sen myös näyttävän lyhyimmältä polulta.
