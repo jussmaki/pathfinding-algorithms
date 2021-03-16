@@ -190,7 +190,7 @@ Algoritmit suorituivat vertailuista ennakkodotusten mukaisesti. Parhaiten kokona
 
 Algoritmien vierailemien solmujen visualisinti käyttöliittymässä auttoi minua ymmärtämään miksi AStar on Djikstraa parempi erityisesti kartalla, jossa kohdesolmusta lähtösolmuun pääsee etenemään suoraan tai lähes suoraan linnunutietä.
 
-AStar oli näissä testeissä selvästi paras. AStarin heuristiikalla pyritään välttämään vierailemasta turhaan solmuissa, joiden euklidiaaninen etäisyys kohdesolmusta on kaukana kuin kulloinen solmu missä ollaan.
+AStar oli näissä testeissä selvästi paras. AStarin heuristiikalla pyritään välttämään vierailemasta turhaan solmuissa, joiden euklidiaaninen etäisyys kohdesolmusta on kaukana solmusta missä kulloinkin ollaan.
 
 Toiseksi parhaiten testeistä suoritui Djikstra, eikä sen ero AStariin ole kovin suuri silloin kun suoraan linnuntietä ei ole mahdollista kulkea.
 
